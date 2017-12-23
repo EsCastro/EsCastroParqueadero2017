@@ -1,0 +1,22 @@
+<h1>Vehiculos en el Parqueadero</h1>
+<hr>
+<div class="table-responsive animated fadeIn">
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Placa</th>
+      <th scope="col">Tipo Vehiculo</th>
+      <th scope="col">Fecha Ingreso</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vehiculo of vehiculosEntity; let i= index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{vehiculo.placa}}</td>
+      <td>{{vehiculo.tipoVehiculo | tipovehiculo}}</td>
+      <td>{{vehiculo.fechaIngreso | date:'yyyy-MM-dd HH:mm a z'}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
