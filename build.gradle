@@ -12,6 +12,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'jacoco'
 apply plugin: 'org.springframework.boot'
 
 group = 'com.ceiba.parqueadero'
@@ -30,7 +31,17 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile 'org.mockito:mockito-all:1.10.19'
 }
+
+test {
+	jacoco{
+		append = false
+		destinationFile = file("jacoco/jacocoTest.exec")
+	}
+	reports.junitXml.destination = file("jacoco/test-results")
+}
+jacocoTestReport.dependsOn(test)
 
 def webappDir = "$projectDir/src/main/webapp"
 sourceSets {
