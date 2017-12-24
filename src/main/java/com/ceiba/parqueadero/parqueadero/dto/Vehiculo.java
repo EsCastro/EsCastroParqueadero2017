@@ -3,8 +3,6 @@ package com.ceiba.parqueadero.parqueadero.dto;
 import static com.ceiba.parqueadero.parqueadero.util.MyValues.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Vehiculo {
@@ -22,7 +20,6 @@ public class Vehiculo {
 		this.cilindraje = cilindraje;
 		this.fechaIngreso = fechaIngreso;
 		this.fechaSalida = fechaSalida;
-		this.valorPagar = valorPagar;
 	}
 	
 	/**
