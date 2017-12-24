@@ -14,6 +14,6 @@ public class ExceptionHandlingController {
         response.setErrorCode("Error");
         response.setErrorMessage(ex.getMessage());
  
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<ExceptionResponse>(response, HttpStatus.NOT_FOUND);
     }
 }
