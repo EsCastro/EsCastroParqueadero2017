@@ -37,7 +37,6 @@ public class VehiculoServiceImp implements VehiculoService{
 
 	@Override
 	public void deleteVehiculo(String placa) {
-		System.out.println("deleteVehiculo ****");
 		vehiculoRespository.delete(placa);
 		
 	}

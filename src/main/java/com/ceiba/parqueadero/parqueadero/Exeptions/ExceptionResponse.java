@@ -6,6 +6,7 @@ public class ExceptionResponse {
     private String errorMessage;
 
     public ExceptionResponse() {
+    	//No se requiere incluir parametros al metodo
     }
 
     public String getErrorCode() {

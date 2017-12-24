@@ -25,7 +25,7 @@ import java.util.Iterator;
 
 
 @RestController
-@CrossOrigin(origins="http://localhost:8085",allowedHeaders="*")
+//@CrossOrigin(origins="http://localhost:8085",allowedHeaders="*")
 public class VigilanteController {
 	@Autowired
 	private VehiculoService vehiculoService;
@@ -35,8 +35,8 @@ public class VigilanteController {
 	 * @param vehiculoEntity, recibe el objeto con el vehiculo a ingresar
 	 * @return, vehiculo ingresado al parqueadero
 	 */
-	//@RequestMapping(value = "ingresarVehiculo", method = RequestMethod.POST)
-	@PostMapping("ingresarVehiculo")
+	@RequestMapping(value = "ingresarVehiculo", method = RequestMethod.POST)
+	//@PostMapping("ingresarVehiculo")
 	public Vehiculo ingresarVehiculo(@RequestBody VehiculoEntity vehiculoEntity){
 		System.out.println("Llego a crear un vehiculo con: " + vehiculoEntity.getPlaca() + " tip "+ vehiculoEntity.getTipoVehiculo() + " cilin " + vehiculoEntity.getCilindraje());
 		Parqueadero parqueadero = new Parqueadero();
@@ -53,10 +53,12 @@ public class VigilanteController {
 			}			
 			//return null;
 		}else if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
-			CUPO_USO_CARROS++;
+			int cupoCarro = getCUPO_USO_CARROS();
+			setCUPO_USO_CARROS(cupoCarro + 1);
 			return vehiculoService.saveVehiculo(vehiculoEntity);
 		}else{
-			CUPO_USO_MOTOS++;
+			int cupoMoto = getCUPO_USO_MOTOS();
+			setCUPO_USO_MOTOS(cupoMoto + 1);
 			return vehiculoService.saveVehiculo(vehiculoEntity);
 		}
 	}
@@ -95,9 +97,11 @@ public class VigilanteController {
 		System.out.println("Traigo Vehiculo **** " + vehiculo.getPlaca());
 		
 		if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
-			CUPO_USO_CARROS--;		
+			int cupoCarro = getCUPO_USO_CARROS();
+			setCUPO_USO_CARROS(cupoCarro - 1);
 		}else{
-			CUPO_USO_MOTOS--;
+			int cupoMoto = getCUPO_USO_MOTOS();
+			setCUPO_USO_MOTOS(cupoMoto - 1);
 		}		
 		vehiculoService.deleteVehiculo(placa);
 	}	

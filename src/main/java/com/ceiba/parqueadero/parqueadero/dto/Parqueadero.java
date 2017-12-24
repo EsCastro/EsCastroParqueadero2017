@@ -21,9 +21,9 @@ public class Parqueadero {
 	public boolean cupoDisponible(int tipoVehiculo){
 		boolean ban = false;
 		
-		if((tipoVehiculo == TIPO_CARRO) && (CUPO_USO_CARROS <= CUPO_CARROS)){
+		if((tipoVehiculo == TIPO_CARRO) && (cupoUsoCarros <= CUPO_CARROS)){
 			ban = true;
-		}else if((tipoVehiculo == TIPO_MOTO) && (CUPO_USO_MOTOS <= CUPO_MOTOS)){
+		}else if((tipoVehiculo == TIPO_MOTO) && (cupoUsoMotos <= CUPO_MOTOS)){
 			ban = true;
 		}		
 		return ban;

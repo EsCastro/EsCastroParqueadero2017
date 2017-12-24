@@ -20,6 +20,23 @@ public final class MyValues {
 	public static final String ERROR_DIA_HABIL = "No puede ingresar porque no esta en un dia habil";
 	public static final int DIA_NO_HABIL_1 = Calendar.SUNDAY;
 	public static final int DIA_NO_HABIL_2 = Calendar.MONDAY;
-	public static int CUPO_USO_CARROS = 1;
-	public static int CUPO_USO_MOTOS = 1;
+	public static int cupoUsoCarros = 1;
+	public static int cupoUsoMotos = 1;
+	
+	private MyValues() {
+	    // No requiere parametros de entrada
+	}
+	
+	public static int getCUPO_USO_CARROS() {
+		return cupoUsoCarros;
+	}
+	public static void setCUPO_USO_CARROS(int cUPO_USO_CARROS) {
+		cupoUsoCarros = cUPO_USO_CARROS;
+	}
+	public static int getCUPO_USO_MOTOS() {
+		return cupoUsoMotos;
+	}
+	public static void setCUPO_USO_MOTOS(int cUPO_USO_MOTOS) {
+		cupoUsoMotos = cUPO_USO_MOTOS;
+	}	
 }
