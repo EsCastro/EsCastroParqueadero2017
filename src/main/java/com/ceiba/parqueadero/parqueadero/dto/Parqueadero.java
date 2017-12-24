@@ -101,7 +101,7 @@ public class Parqueadero {
 	public double getVlrDiaMoto() {
 		return vlrDiaMoto;
 	}
-	public void setVlr_dia_moto(double vlrDiaMoto) {
+	public void setVlrDiaMoto(double vlrDiaMoto) {
 		this.vlrDiaMoto = vlrDiaMoto;
 	}
 	public double getVlrDiaCarro() {

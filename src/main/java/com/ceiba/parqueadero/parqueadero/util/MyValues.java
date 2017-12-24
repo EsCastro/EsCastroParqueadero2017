@@ -27,16 +27,16 @@ public final class MyValues {
 	    // No requiere parametros de entrada
 	}
 	
-	public static int getCUPO_USO_CARROS() {
+	public static int getCupoUsoCarros() {
 		return cupoUsoCarros;
 	}
-	public static void setCUPO_USO_CARROS(int cUPO_USO_CARROS) {
-		cupoUsoCarros = cUPO_USO_CARROS;
+	public static void setCupoUsoCarros(int cupoUsCarros) {
+		cupoUsoCarros = cupoUsCarros;
 	}
-	public static int getCUPO_USO_MOTOS() {
+	public static int getCupoUsoMotos() {
 		return cupoUsoMotos;
 	}
-	public static void setCUPO_USO_MOTOS(int cUPO_USO_MOTOS) {
-		cupoUsoMotos = cUPO_USO_MOTOS;
+	public static void setCupoUsoMotos(int cupoUsMotos) {
+		cupoUsoMotos = cupoUsMotos;
 	}	
 }

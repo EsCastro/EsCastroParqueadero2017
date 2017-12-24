@@ -47,12 +47,12 @@ public class VigilanteController {
 				throw new ResourceNotFoundException(5, ERROR_CUPO_MAX_MOTO);
 			}			
 		}else if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
-			int cupoCarro = getCUPO_USO_CARROS();
-			setCUPO_USO_CARROS(cupoCarro + 1);
+			int cupoCarro = getCupoUsoCarros();
+			setCupoUsoCarros(cupoCarro + 1);
 			return vehiculoService.saveVehiculo(vehiculoEntity);
 		}else{
-			int cupoMoto = getCUPO_USO_MOTOS();
-			setCUPO_USO_MOTOS(cupoMoto + 1);
+			int cupoMoto = getCupoUsoMotos();
+			setCupoUsoMotos(cupoMoto + 1);
 			return vehiculoService.saveVehiculo(vehiculoEntity);
 		}
 	}
@@ -89,11 +89,11 @@ public class VigilanteController {
 		Vehiculo vehiculo = vehiculoService.getVehiculoByPlaca(placa);
 		
 		if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
-			int cupoCarro = getCUPO_USO_CARROS();
-			setCUPO_USO_CARROS(cupoCarro - 1);
+			int cupoCarro = getCupoUsoCarros();
+			setCupoUsoCarros(cupoCarro - 1);
 		}else{
-			int cupoMoto = getCUPO_USO_MOTOS();
-			setCUPO_USO_MOTOS(cupoMoto - 1);
+			int cupoMoto = getCupoUsoMotos();
+			setCupoUsoMotos(cupoMoto - 1);
 		}		
 		vehiculoService.deleteVehiculo(placa);
 	}	
