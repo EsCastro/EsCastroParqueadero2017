@@ -1,28 +1,24 @@
 package com.ceiba.parqueadero.parqueadero.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ceiba.parqueadero.parqueadero.Exeptions.ResourceNotFoundException;
 import com.ceiba.parqueadero.parqueadero.builder.VehiculoBuilder;
 import com.ceiba.parqueadero.parqueadero.dto.Parqueadero;
 import com.ceiba.parqueadero.parqueadero.dto.Vehiculo;
 import com.ceiba.parqueadero.parqueadero.entities.VehiculoEntity;
+import com.ceiba.parqueadero.parqueadero.exeptions.ResourceNotFoundException;
 import com.ceiba.parqueadero.parqueadero.service.VehiculoService;
 
 
 import static com.ceiba.parqueadero.parqueadero.util.MyValues.*;
 
 import java.text.ParseException;
-import java.util.Iterator;
-
 
 @RestController
 //@CrossOrigin(origins="http://localhost:8085",allowedHeaders="*")
@@ -38,7 +34,6 @@ public class VigilanteController {
 	@RequestMapping(value = "ingresarVehiculo", method = RequestMethod.POST)
 	//@PostMapping("ingresarVehiculo")
 	public Vehiculo ingresarVehiculo(@RequestBody VehiculoEntity vehiculoEntity){
-		System.out.println("Llego a crear un vehiculo con: " + vehiculoEntity.getPlaca() + " tip "+ vehiculoEntity.getTipoVehiculo() + " cilin " + vehiculoEntity.getCilindraje());
 		Parqueadero parqueadero = new Parqueadero();
 		Vehiculo vehiculo = VehiculoBuilder.convertirADominio(vehiculoEntity);
 		
@@ -92,7 +87,6 @@ public class VigilanteController {
 	//@RequestMapping(value = "liberarCupo", method = RequestMethod.DELETE)
 	@DeleteMapping("liberarCupo/{placa}")
 	public void liberarCupo(@PathVariable String placa){
-		System.out.println("liberarCupo **** " + placa);
 		Vehiculo vehiculo = vehiculoService.getVehiculoByPlaca(placa);
 		System.out.println("Traigo Vehiculo **** " + vehiculo.getPlaca());
 		

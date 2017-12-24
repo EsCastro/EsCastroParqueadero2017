@@ -1,4 +1,4 @@
-package com.ceiba.parqueadero.parqueadero.Exeptions;
+package com.ceiba.parqueadero.parqueadero.exeptions;
 
 public class ResourceNotFoundException extends RuntimeException {
 	 

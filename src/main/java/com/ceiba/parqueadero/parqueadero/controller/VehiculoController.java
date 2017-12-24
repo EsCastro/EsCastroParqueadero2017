@@ -16,7 +16,6 @@ public class VehiculoController {
 	
 	@RequestMapping(value = "vehiculo", method = RequestMethod.POST)
 	public Vehiculo saveVehiculo(VehiculoEntity vehiculoEntity){
-		System.out.println("**********Fecha Ingreso: " + vehiculoEntity.getFechaIngreso());
 		return vehiculoService.saveVehiculo(vehiculoEntity);
 	}
 

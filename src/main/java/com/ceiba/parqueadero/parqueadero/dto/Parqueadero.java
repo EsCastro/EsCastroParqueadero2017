@@ -8,7 +8,12 @@ import java.util.Date;
 
 public class Parqueadero {
 	private int cupoMotos, cupoCarros;
-	private double vlr_hora_moto,vlr_hora_carro,vlr_dia_moto,vlr_dia_carro,vlr_adicional_cc;
+	private double vlr_hora_moto;
+	private double vlr_hora_carro;
+	private double vlr_dia_moto;
+	private double vlr_dia_carro;
+	private double vlr_adicional_cc;
+	
 	public Parqueadero() {
 		super();
 	}
@@ -20,10 +25,12 @@ public class Parqueadero {
 	 */
 	public boolean cupoDisponible(int tipoVehiculo){
 		boolean ban = false;
+		int cupoCarro = cupoUsoCarros;
+		int cupoMoto = cupoUsoCarros;
 		
-		if((tipoVehiculo == TIPO_CARRO) && (cupoUsoCarros <= CUPO_CARROS)){
+		if((tipoVehiculo == TIPO_CARRO) && (cupoCarro <= CUPO_CARROS)){
 			ban = true;
-		}else if((tipoVehiculo == TIPO_MOTO) && (cupoUsoMotos <= CUPO_MOTOS)){
+		}else if((tipoVehiculo == TIPO_MOTO) && (cupoMoto <= CUPO_MOTOS)){
 			ban = true;
 		}		
 		return ban;
@@ -54,7 +61,7 @@ public class Parqueadero {
 	 */
 	public Vehiculo totalPagar(Vehiculo vehiculo) throws ParseException{
 		vehiculo.setFechaSalida(new Date());
-		double valorPagar = 0.0;;
+		double valorPagar = 0.0;
 		
 		if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
 			valorPagar = vehiculo.valorPagarCarro();

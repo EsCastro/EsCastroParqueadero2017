@@ -1,4 +1,4 @@
-package com.ceiba.parqueadero.parqueadero.Exeptions;
+package com.ceiba.parqueadero.parqueadero.exeptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
