@@ -7,12 +7,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Parqueadero {
-	private int cupoMotos, cupoCarros;
-	private double vlr_hora_moto;
-	private double vlr_hora_carro;
-	private double vlr_dia_moto;
-	private double vlr_dia_carro;
-	private double vlr_adicional_cc;
+	private int cupoMotos;
+	private int cupoCarros;
+	private double vlrHoraMoto;
+	private double vlrHoraCarro;
+	private double vlrDiaMoto;
+	private double vlrDiaCarro;
+	private double vlrAdicionalCc;
 	
 	public Parqueadero() {
 		super();
@@ -85,34 +86,34 @@ public class Parqueadero {
 	public void setCupoCarros(int cupoCarros) {
 		this.cupoCarros = cupoCarros;
 	}
-	public double getVlr_hora_moto() {
-		return vlr_hora_moto;
+	public double getVlrHoraMoto() {
+		return vlrHoraMoto;
 	}
-	public void setVlr_hora_moto(double vlr_hora_moto) {
-		this.vlr_hora_moto = vlr_hora_moto;
+	public void setVlrHoraMoto(double vlrHoraMoto) {
+		this.vlrHoraMoto = vlrHoraMoto;
 	}
-	public double getVlr_hora_carro() {
-		return vlr_hora_carro;
+	public double getVlrHoraCarro() {
+		return vlrHoraCarro;
 	}
-	public void setVlr_hora_carro(double vlr_hora_carro) {
-		this.vlr_hora_carro = vlr_hora_carro;
+	public void setVlrHoraCarro(double vlrHoraCarro) {
+		this.vlrHoraCarro = vlrHoraCarro;
 	}
-	public double getVlr_dia_moto() {
-		return vlr_dia_moto;
+	public double getVlrDiaMoto() {
+		return vlrDiaMoto;
 	}
-	public void setVlr_dia_moto(double vlr_dia_moto) {
-		this.vlr_dia_moto = vlr_dia_moto;
+	public void setVlr_dia_moto(double vlrDiaMoto) {
+		this.vlrDiaMoto = vlrDiaMoto;
 	}
-	public double getVlr_dia_carro() {
-		return vlr_dia_carro;
+	public double getVlrDiaCarro() {
+		return vlrDiaCarro;
 	}
-	public void setVlr_dia_carro(double vlr_dia_carro) {
-		this.vlr_dia_carro = vlr_dia_carro;
+	public void setVlrDiaCarro(double vlrDiaCarro) {
+		this.vlrDiaCarro = vlrDiaCarro;
 	}
-	public double getVlr_adicional_cc() {
-		return vlr_adicional_cc;
+	public double getVlrAdicionalCc() {
+		return vlrAdicionalCc;
 	}
-	public void setVlr_adicional_cc(double vlr_adicional_cc) {
-		this.vlr_adicional_cc = vlr_adicional_cc;
+	public void setVlrAdicionalCc(double vlrAdicionalCc) {
+		this.vlrAdicionalCc = vlrAdicionalCc;
 	}		
 }

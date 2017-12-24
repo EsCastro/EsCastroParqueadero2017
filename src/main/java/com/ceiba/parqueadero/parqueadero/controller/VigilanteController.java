@@ -46,7 +46,6 @@ public class VigilanteController {
 			}else{
 				throw new ResourceNotFoundException(5, ERROR_CUPO_MAX_MOTO);
 			}			
-			//return null;
 		}else if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
 			int cupoCarro = getCUPO_USO_CARROS();
 			setCUPO_USO_CARROS(cupoCarro + 1);
@@ -88,7 +87,6 @@ public class VigilanteController {
 	@DeleteMapping("liberarCupo/{placa}")
 	public void liberarCupo(@PathVariable String placa){
 		Vehiculo vehiculo = vehiculoService.getVehiculoByPlaca(placa);
-		System.out.println("Traigo Vehiculo **** " + vehiculo.getPlaca());
 		
 		if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
 			int cupoCarro = getCUPO_USO_CARROS();
