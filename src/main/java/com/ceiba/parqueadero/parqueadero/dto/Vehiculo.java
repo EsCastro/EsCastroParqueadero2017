@@ -95,9 +95,9 @@ public class Vehiculo {
         }else if(dias > 0 && horas > LIMITE_VALOR_DIA){
         	valorPagar = ((dias + 1) * VALOR_DIA_MOTO);
         }else if(dias == 0 && horas <= LIMITE_VALOR_DIA && minutos > 0){
-        	valorPagar = ((horas + 1) * VALOR_HORA_CARRO);
+        	valorPagar = ((horas + 1) * VALOR_HORA_MOTO);
         }else if(dias == 0 && horas <= LIMITE_VALOR_DIA && minutos == 0){
-        	valorPagar = (horas * VALOR_HORA_CARRO);
+        	valorPagar = (horas * VALOR_HORA_MOTO);
         }else if(dias == 0 && horas > LIMITE_VALOR_DIA){
         	valorPagar = ((dias + 1) * VALOR_DIA_MOTO);
         }

@@ -38,5 +38,13 @@ public final class MyValues {
 	}
 	public static void setCupoUsoMotos(int cupoUsMotos) {
 		cupoUsoMotos = cupoUsMotos;
-	}	
+	}
+
+	public static int getCupoMotos() {
+		return CUPO_MOTOS;
+	}
+
+	public static int getCupoCarros() {
+		return CUPO_CARROS;
+	}
 }

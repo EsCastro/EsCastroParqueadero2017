@@ -19,6 +19,7 @@ import com.ceiba.parqueadero.parqueadero.service.VehiculoService;
 import static com.ceiba.parqueadero.parqueadero.util.MyValues.*;
 
 import java.text.ParseException;
+import java.util.Date;
 
 @RestController
 //@CrossOrigin(origins="http://localhost:8085",allowedHeaders="*")
@@ -67,6 +68,7 @@ public class VigilanteController {
 	public Vehiculo salidaVehiculo(@PathVariable String placa) throws ParseException{
 		Vehiculo vehiculo = vehiculoService.getVehiculoByPlaca(placa);
 		Parqueadero parqueadero = new Parqueadero();
+		vehiculo.setFechaSalida(new Date());
 		return parqueadero.totalPagar(vehiculo);
 	}
 	

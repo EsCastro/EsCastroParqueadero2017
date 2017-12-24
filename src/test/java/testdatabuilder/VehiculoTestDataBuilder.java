@@ -1,5 +1,7 @@
 package testdatabuilder;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.ceiba.parqueadero.parqueadero.dto.Vehiculo;
@@ -40,17 +42,23 @@ public class VehiculoTestDataBuilder {
 		return this;
 	}
 	
-	public VehiculoTestDataBuilder conFechaIngreso(Date fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
+	public VehiculoTestDataBuilder conFechaIngreso(String fechaIngreso) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd H:m:s");
+        Date fechaInicial=dateFormat.parse(fechaIngreso);
+        
+		this.fechaIngreso = fechaInicial;
 		return this;
 	}
 	
-	public VehiculoTestDataBuilder conFechaSalida(Date fechaSalida) {
-		this.fechaSalida = fechaSalida;
+	public VehiculoTestDataBuilder conFechaSalida(String fechaSalida) throws ParseException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd H:m:s");
+        Date fechaFinal=dateFormat.parse(fechaSalida);
+		this.fechaSalida = fechaFinal;
 		return this;
 	}
+	
 	public Vehiculo build() {
-		return new Vehiculo(tipoVehiculo, placa, cilindraje, fechaIngreso, fechaSalida);
+		return new Vehiculo(this.tipoVehiculo, this.placa, this.cilindraje, this.fechaIngreso, this.fechaSalida);
 	}
 
 }

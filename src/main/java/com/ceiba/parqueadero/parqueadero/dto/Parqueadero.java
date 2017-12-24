@@ -60,8 +60,7 @@ public class Parqueadero {
 	 * @return
 	 * @throws ParseException 
 	 */
-	public Vehiculo totalPagar(Vehiculo vehiculo) throws ParseException{
-		vehiculo.setFechaSalida(new Date());
+	public Vehiculo totalPagar(Vehiculo vehiculo) throws ParseException{		
 		double valorPagar = 0.0;
 		
 		if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
