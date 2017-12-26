@@ -122,54 +122,6 @@ public class VigilanteControllerTest {
 	}
 	
 	@Test
-	public void ingresarVehiculoMotoTest() throws Exception{
-		//Arrange
-		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder();
-		Vehiculo vehiculo = vehiculoTestDataBuilder.conFechaIngreso("2017-12-20 8:00:00").conTipoVehiculo(2).conFechaSalida("2017-12-21 8:00:00").build();
-		String expected = "{\"tipoVehiculo\":2,\"placa\":\"PPA25D\",\"cilindraje\":200,\"fechaIngreso\":1513774800000,\"fechaSalida\":1513861200000,\"valorPagar\":0.0}";
-		String exampleCourseJson = "{\"tipoVehiculo\":2,\"placa\":\"PPA25D\",\"cilindraje\":200,\"fechaIngreso\":1513774800000,\"fechaSalida\":1513861200000,\"valorPagar\":0.0}";
-		
-		//Act
-		Mockito.when(
-				vehiculoService.saveVehiculo(Mockito.anyObject())).thenReturn(vehiculo);
-		
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
-				"/ingresarVehiculo")
-				.accept(MediaType.APPLICATION_JSON).content(exampleCourseJson)
-				.contentType(MediaType.APPLICATION_JSON);
-		
-		MvcResult result = mockMvc.perform(requestBuilder).andReturn();		
-	
-		//Assert
-		JSONAssert.assertEquals(expected, result.getResponse()
-				.getContentAsString(), false);		
-	}
-	
-	@Test
-	public void ingresarVehiculoMotoAltCCTest() throws Exception{
-		//Arrange
-		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder();
-		Vehiculo vehiculo = vehiculoTestDataBuilder.conTipoVehiculo(2).conCilindraje(600).conFechaIngreso("2017-12-20 8:00:00").conFechaSalida("2017-12-21 8:00:00").build();
-		String expected = "{\"tipoVehiculo\":2,\"placa\":\"PPA25D\",\"cilindraje\":600,\"fechaIngreso\":1513774800000,\"fechaSalida\":1513861200000,\"valorPagar\":0.0}";
-		String exampleCourseJson = "{\"tipoVehiculo\":2,\"placa\":\"PPA25D\",\"cilindraje\":600,\"fechaIngreso\":1513774800000,\"fechaSalida\":1513861200000,\"valorPagar\":0.0}";
-		
-		//Act
-		Mockito.when(
-				vehiculoService.saveVehiculo(Mockito.anyObject())).thenReturn(vehiculo);
-		
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
-				"/ingresarVehiculo")
-				.accept(MediaType.APPLICATION_JSON).content(exampleCourseJson)
-				.contentType(MediaType.APPLICATION_JSON);
-		
-		MvcResult result = mockMvc.perform(requestBuilder).andReturn();		
-
-		//Assert
-		JSONAssert.assertEquals(expected, result.getResponse()
-				.getContentAsString(), false);		
-	}
-	
-	@Test
 	public void liberarCupoTest() throws Exception{
 		//Arrange
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder();

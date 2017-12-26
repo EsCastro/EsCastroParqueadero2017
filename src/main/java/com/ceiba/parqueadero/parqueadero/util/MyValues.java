@@ -3,7 +3,7 @@ package com.ceiba.parqueadero.parqueadero.util;
 import java.util.Calendar;
 
 public final class MyValues {
-	public static final int CUPO_MOTOS = 2;
+	public static final int CUPO_MOTOS = 10;
 	public static final int CUPO_CARROS = 20;	
 	public static final double VALOR_HORA_CARRO = 1000;
 	public static final double VALOR_HORA_MOTO = 500;
