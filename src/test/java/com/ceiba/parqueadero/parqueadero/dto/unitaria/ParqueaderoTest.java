@@ -13,8 +13,8 @@ import testdatabuilder.VehiculoTestDataBuilder;
 
 public class ParqueaderoTest {
 	private static final double VLR_PAGAR_CARRO = 8000.0;
-	private static final double VLR_PAGAR_MOTO = 16000.0;
-	private static final double VLR_PAGAR_MOTO_ALT_CC = 6000.0;
+	private static final double VLR_PAGAR_MOTO = 16500.0;
+	private static final double VLR_PAGAR_MOTO_ALT_CC = 20000.0;
 	private static final int TIPO_VEHICULO_MOTO = 2;
 	private static final int CILINDRAJE_ALTO = 600;
 	private static final String PLACA = "PPA25D";
@@ -88,12 +88,12 @@ public class ParqueaderoTest {
 	public void valorPagarMotoTest() throws ParseException{
 		//Arrange
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder();
-		Vehiculo vehiculo = vehiculoTestDataBuilder.conTipoVehiculo(TIPO_VEHICULO_MOTO).conFechaIngreso("2017-12-17 8:00:00").conFechaSalida("2017-12-21 8:00:00").build();
+		Vehiculo vehiculo = vehiculoTestDataBuilder.conTipoVehiculo(TIPO_VEHICULO_MOTO).conFechaIngreso("2017-12-17 8:00:00").conFechaSalida("2017-12-21 8:05:00").build();
 		Parqueadero parqueadero = new Parqueadero();
 		
 		//Act
 		Vehiculo vehiculoPagar = parqueadero.valorPagarMoto(vehiculo);
-		System.out.println("Fechas***********  "+vehiculoPagar.getValorPagar());
+		
 		//Assert
 		Assert.assertTrue("Not equals", VLR_PAGAR_MOTO -  vehiculoPagar.getValorPagar() == 0);
 	}
@@ -102,27 +102,14 @@ public class ParqueaderoTest {
 	public void valorPagarMotoAltCCTest() throws ParseException{
 		//Arrange
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder();
-		Vehiculo vehiculo = vehiculoTestDataBuilder.conTipoVehiculo(TIPO_VEHICULO_MOTO).conCilindraje(CILINDRAJE_ALTO).conFechaIngreso("2017-12-17 8:00:00").conFechaSalida("2017-12-21 8:00:00").build();
+		Vehiculo vehiculo = vehiculoTestDataBuilder.conTipoVehiculo(TIPO_VEHICULO_MOTO).conCilindraje(CILINDRAJE_ALTO).conFechaIngreso("2017-12-17 8:00:00").conFechaSalida("2017-12-21 18:00:00").build();
 		Parqueadero parqueadero = new Parqueadero();
 		
 		//Act
 		Vehiculo vehiculoPagar = parqueadero.valorPagarMoto(vehiculo);
-		
+		System.out.println("Fechas***********  "+vehiculoPagar.getValorPagar());
 		//Assert
-		Assert.assertTrue("Not equals", (VLR_PAGAR_MOTO + VALOR_ADICIONAL_CILINDRAJE) -  vehiculoPagar.getValorPagar() == 0);
+		Assert.assertTrue("Not equals", (VLR_PAGAR_MOTO_ALT_CC + VALOR_ADICIONAL_CILINDRAJE) -  vehiculoPagar.getValorPagar() == 0);
 	}
-	
-	@Test
-	public void totalPagarMotoAltoCC() throws ParseException{
-		//Arrange
-		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder();
-		Vehiculo vehiculo = vehiculoTestDataBuilder.conTipoVehiculo(TIPO_VEHICULO_MOTO).conCilindraje(CILINDRAJE_ALTO).conFechaIngreso("2017-12-20 8:00:00").conFechaSalida("2017-12-21 8:00:00").build();
-		Parqueadero parqueadero = new Parqueadero();
-		
-		//Act
-		Vehiculo vehiculoPagar = parqueadero.valorPagarMoto(vehiculo);
-		
-		//Assert
-		Assert.assertTrue("Not equals", VLR_PAGAR_MOTO_ALT_CC -  vehiculoPagar.getValorPagar() == 0);
-	}	
+
 }
