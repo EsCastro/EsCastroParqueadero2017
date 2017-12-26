@@ -35,9 +35,11 @@ public class VehiculoServiceImp implements VehiculoService{
 	}
 
 	@Override
-	public Vehiculo saveVehiculo(VehiculoEntity vehiculoEntity) {
+	public Vehiculo saveVehiculo(VehiculoEntity vehiculoEntity) {		
 		if(vehiculoEntity != null){
 			vehiculoEntity.setFechaIngreso(new Date());
+			Vehiculo vehiculo = VehiculoBuilder.convertirADominio(vehiculoRespository.save(vehiculoEntity));
+			System.out.println("Valor vehiculo respuesta " + vehiculo.getPlaca());
 			return VehiculoBuilder.convertirADominio(vehiculoRespository.save(vehiculoEntity));
 		}		
 		return null;

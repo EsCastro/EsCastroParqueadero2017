@@ -71,7 +71,6 @@ public class VigilanteController {
 		Vehiculo vehiculo = vehiculoService.getVehiculoByPlaca(placa);
 		Parqueadero parqueadero = new Parqueadero();
 				
-		//vehiculo.setFechaSalida(new Date());
 		if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
 			vehiculo = parqueadero.valorPagarCarro(vehiculo);
 		}else if (vehiculo.getTipoVehiculo() == TIPO_MOTO){
