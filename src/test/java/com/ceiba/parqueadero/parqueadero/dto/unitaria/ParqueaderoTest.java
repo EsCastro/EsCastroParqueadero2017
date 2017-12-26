@@ -2,6 +2,7 @@ package com.ceiba.parqueadero.parqueadero.dto.unitaria;
 import static com.ceiba.parqueadero.parqueadero.util.MyValues.*;
 
 import java.text.ParseException;
+import java.util.Calendar;
 
 import com.ceiba.parqueadero.parqueadero.dto.Parqueadero;
 import com.ceiba.parqueadero.parqueadero.dto.Vehiculo;
@@ -16,9 +17,10 @@ public class ParqueaderoTest {
 	private static final double VLR_PAGAR_MOTO_ALT_CC = 6000.0;
 	private static final int TIPO_VEHICULO_MOTO = 2;
 	private static final int CILINDRAJE_ALTO = 600;
+	private static final String PLACA = "PPA25D";
 	
 	@Test
-	public void cupoDisponibleNegativo(){
+	public void cupoDisponibleNegativoTest(){
 		//Arrange
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder();
 		Vehiculo vehiculo = vehiculoTestDataBuilder.build();
@@ -34,7 +36,7 @@ public class ParqueaderoTest {
 	}
 	
 	@Test
-	public void cupoDisponiblePositivo(){
+	public void cupoDisponiblePositivoTest(){
 		//Arrange
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder();
 		Vehiculo vehiculo = vehiculoTestDataBuilder.build();
@@ -47,6 +49,25 @@ public class ParqueaderoTest {
 		
 		//Assert
 		Assert.assertTrue(resultado);
+	}
+	
+	@Test
+	public void placaAutorizadaTest(){
+		//Arrange
+		Parqueadero parqueadero = new Parqueadero();
+		Calendar diaHoy = Calendar.getInstance();
+		boolean resultado = false;
+		
+		//Act
+		resultado = parqueadero.placaAutorizada(PLACA);
+		
+		//Assert
+		if((diaHoy.get(Calendar.DAY_OF_WEEK) == DIA_NO_HABIL_1)
+			       || (diaHoy.get(Calendar.DAY_OF_WEEK) == DIA_NO_HABIL_2)){
+			Assert.assertFalse(resultado);
+		}else{
+			Assert.assertTrue(resultado);
+		}
 	}
 	
 	@Test
