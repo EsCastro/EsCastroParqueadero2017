@@ -49,12 +49,13 @@ export class VehiculosService {
     console.log('JSONMUESTRA');
     console.log(JSON.stringify(vehiculoEntity));
     return this.http.post(this.urlConsultVehi+url,JSON.stringify(vehiculoEntity),this.options)
-                    .map((respuesta: Response) => respuesta.json())
-                    .catch(this.errorHandler);
+                    .map((respuesta: Response) => respuesta.json());
+                    //.catch(this.errorHandler);
   }
 
   errorHandler(error:Response){
     console.log("Estoy en el response");
+    console.log(error.json());
     return Observable.throw(error||"SERVER ERROR");
   }
 

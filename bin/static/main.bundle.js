@@ -225,7 +225,7 @@ var ConsultaComponent = (function () {
 /***/ "../../../../../src/app/components/ingreso/ingreso.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Ingreso de Vehiculo</h1>\n<hr>\n\n  <div class=\"row animated fadeIn\">\n    <div class=\"col-md-4\">\n      <form (ngSubmit)=\"ingresarVehiculo()\" #forma=\"ngForm\">\n        <div class=\"form-group\">\n            <label>Placa</label>\n            <input [(ngModel)]=\"vehiculo.placa\" name=\"placa\" class=\"form-control\" placeholder=\"Placa Vehiculo\" required>\n        </div>\n        <div class=\"form-group\">\n          <label>Tipo Vehiculo</label>\n          <select [(ngModel)]=\"vehiculo.tipoVehiculo\" class=\"form-control\" name=\"tipovehiculo\">\n            <option value=\"1\">CARRO</option>\n            <option value=\"2\">MOTO</option>\n          </select>\n        </div>\n        <div class=\"form-group\">\n          <label>Cilindraje</label>\n          <input [(ngModel)]=\"vehiculo.cilindraje\" class=\"form-control\" placeholder=\"Cilindraje\" name=\"cilindraje\">\n        </div>\n        <div class=\"form-group\">\n          <!-- <button [disabled]=\"!forma.valid\" [routerLink]=\"['/consulta']\" class=\"btn btn-outline-primary\" type=\"submit\">Ingresar Vehiculo</button> -->\n          <button [disabled]=\"!forma.valid\" class=\"btn btn-outline-primary\" type=\"submit\">Ingresar Vehiculo</button>\n        </div>\n      </form>\n      </div>\n  </div>\n"
+module.exports = "<h1>Ingreso de Vehiculo</h1>\n<hr>\n<div class=\"row animated fadeIn fast\" *ngIf=\"respuestaError.errorCode == 'Error'\">\n<div class=\"col-md-12\">\n  <div class=\"alert alert-info\" role=\"alert\">\n    {{respuestaError.errorMessage}}\n  </div>\n</div>\n</div>\n\n  <div class=\"row animated fadeIn\">\n    <div class=\"col-md-4\">\n      <form (ngSubmit)=\"ingresarVehiculo()\" #forma=\"ngForm\">\n        <div class=\"form-group\">\n            <label>Placa</label>\n            <input [(ngModel)]=\"vehiculo.placa\" name=\"placa\" class=\"form-control\" placeholder=\"Placa Vehiculo\" required>\n        </div>\n        <div class=\"form-group\">\n          <label>Tipo Vehiculo</label>\n          <select [(ngModel)]=\"vehiculo.tipoVehiculo\" class=\"form-control\" name=\"tipovehiculo\">\n            <option value=\"1\">CARRO</option>\n            <option value=\"2\">MOTO</option>\n          </select>\n        </div>\n        <div class=\"form-group\">\n          <label>Cilindraje</label>\n          <input [(ngModel)]=\"vehiculo.cilindraje\" class=\"form-control\" placeholder=\"Cilindraje\" name=\"cilindraje\">\n        </div>\n        <div class=\"form-group\">\n          <!-- <button [disabled]=\"!forma.valid\" [routerLink]=\"['/consulta']\" class=\"btn btn-outline-primary\" type=\"submit\">Ingresar Vehiculo</button> -->\n          <button [disabled]=\"!forma.valid\" class=\"btn btn-outline-primary\" type=\"submit\">Ingresar Vehiculo</button>\n        </div>\n      </form>\n      </div>\n  </div>\n"
 
 /***/ }),
 
@@ -237,6 +237,7 @@ module.exports = "<h1>Ingreso de Vehiculo</h1>\n<hr>\n\n  <div class=\"row anima
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_vehiculos_service__ = __webpack_require__("../../../../../src/app/services/vehiculos.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -246,6 +247,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -261,6 +263,10 @@ var IngresoComponent = (function () {
             fechaSalida: null,
             valorPagar: null
         };
+        this.respuestaError = {
+            errorCode: "",
+            errorMessage: ""
+        };
     }
     IngresoComponent.prototype.ngOnInit = function () {
     };
@@ -272,6 +278,7 @@ var IngresoComponent = (function () {
             console.log(vehiculo);
         }, function (error) {
             console.log(error);
+            _this.respuestaError = error.json();
         });
     };
     IngresoComponent = __decorate([
@@ -309,7 +316,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/salida/salida.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Salida de Vehiculo</h1>\n<hr>\n  <div *ngIf=\"vehiculo == null\" class=\"row animated fadeIn\">\n    <div class=\"col-md-4\">\n      <form onsubmit=\"return false\">\n        <div class=\"form-group\">\n           <input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Ingresar Placa\" #buscarTexto>\n        </div>\n        <div class=\"form-group\">\n           <button (click)=\"buscarVehiculo(buscarTexto.value)\" class=\"btn btn-outline-primary my-2 my-sm-0\" type=\"button\">Consultar Costo</button>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div *ngIf=\"vehiculo != null\" class=\"row animated fadeIn\">\n    <div class=\"col-md-4\">\n      <form (ngSubmit)=\"salidaVehiculo()\" #forma=\"ngForm\">\n        <div class=\"form-group\">\n            <label>Placa</label>\n            <input [(ngModel)]=\"vehiculo.placa\" name=\"placa\" class=\"form-control\" placeholder=\"Placa Vehiculo\" required>\n        </div>\n        <div class=\"form-group\">\n          <label>Tipo Vehiculo</label>\n          <select [(ngModel)]=\"vehiculo.tipoVehiculo\" class=\"form-control\" name=\"tipovehiculo\">\n            <option value=\"1\">CARRO</option>\n            <option value=\"2\">MOTO</option>\n          </select>\n        </div>\n        <div class=\"form-group\">\n          <label>Cilindraje</label>\n          <input [(ngModel)]=\"vehiculo.cilindraje\" class=\"form-control\" name=\"cilindraje\">\n        </div>\n        <div class=\"form-group\">\n          <label>Fecha Ingreso</label>\n          <input value=\"{{vehiculo.fechaIngreso | date:'yyyy-MM-dd HH:mm a z'}}\" class=\"form-control\" name=\"fechaIngreso\">\n        </div>\n        <div class=\"form-group\">\n          <label>Fecha Salida</label>\n          <input value=\"{{vehiculo.fechaSalida | date:'yyyy-MM-dd HH:mm a z'}}\" class=\"form-control\" name=\"fechaSalida\">\n        </div>\n        <div class=\"form-group\">\n          <label>Total Pagar</label>\n          <input value=\"{{vehiculo.valorPagar}}\" class=\"form-control\" name=\"costo\">\n        </div>\n        <div class=\"form-group\">\n          <button [disabled]=\"!forma.valid\" class=\"btn btn-outline-primary\" type=\"submit\">Pagar</button>\n        </div>\n      </form>\n      </div>\n  </div>\n"
+module.exports = "<h1>Salida de Vehiculo</h1>\n<hr>\n<div class=\"row animated fadeIn fast\" *ngIf=\"respuestaError.errorCode == 'Error'\">\n<div class=\"col-md-12\">\n  <div class=\"alert alert-info\" role=\"alert\">\n    {{respuestaError.errorMessage}}\n  </div>\n</div>\n</div>\n  <div *ngIf=\"vehiculo == null\" class=\"row animated fadeIn\">\n    <div class=\"col-md-4\">\n      <form onsubmit=\"return false\">\n        <div class=\"form-group\">\n           <input class=\"form-control mr-sm-2\" type=\"text\" placeholder=\"Ingresar Placa\" #buscarTexto>\n        </div>\n        <div class=\"form-group\">\n           <button (click)=\"buscarVehiculo(buscarTexto.value)\" class=\"btn btn-outline-primary my-2 my-sm-0\" type=\"button\">Consultar Costo</button>\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <div *ngIf=\"vehiculo != null\" class=\"row animated fadeIn\">\n    <div class=\"col-md-12\">\n      <form (ngSubmit)=\"salidaVehiculo()\" #forma=\"ngForm\">\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <label>Placa</label>\n            <input [(ngModel)]=\"vehiculo.placa\" disabled name=\"placa\" class=\"form-control\" placeholder=\"Placa Vehiculo\" required>\n          </div>\n          <div class=\"col-md-4\">\n            <label>Tipo Vehiculo</label>\n            <select [(ngModel)]=\"vehiculo.tipoVehiculo\" disabled class=\"form-control\" name=\"tipovehiculo\">\n              <option value=\"1\">CARRO</option>\n              <option value=\"2\">MOTO</option>\n            </select>\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <label>Fecha Ingreso</label>\n            <input value=\"{{vehiculo.fechaIngreso | date:'yyyy-MM-dd HH:mm a z'}}\" disabled class=\"form-control\" name=\"fechaIngreso\">\n          </div>\n          <div class=\"col-md-4\">\n            <label>Fecha Salida</label>\n            <input value=\"{{vehiculo.fechaSalida | date:'yyyy-MM-dd HH:mm a z'}}\" disabled class=\"form-control\" name=\"fechaSalida\">\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <label>Cilindraje</label>\n            <input [(ngModel)]=\"vehiculo.cilindraje\" disabled class=\"form-control\" name=\"cilindraje\">\n          </div>\n          <div class=\"col-md-4\">\n            <label>Total Pagar</label>\n            <input value=\"{{vehiculo.valorPagar}}\" class=\"form-control\" disabled name=\"costo\">\n          </div>\n        </div>\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <button [disabled]=\"!forma.valid\" class=\"btn btn-outline-primary\" type=\"submit\">Pagar</button>\n          </div>\n        </div>\n      </form>\n      </div>\n  </div>\n"
 
 /***/ }),
 
@@ -338,15 +345,24 @@ var SalidaComponent = (function () {
         this._vehiculoService = _vehiculoService;
         this._router = _router;
         this.vehiculo = null;
+        this.respuestaError = {
+            errorCode: "",
+            errorMessage: ""
+        };
     }
     SalidaComponent.prototype.ngOnInit = function () {
     };
     SalidaComponent.prototype.buscarVehiculo = function (placa) {
         var _this = this;
+        this.respuestaError = {
+            errorCode: "",
+            errorMessage: ""
+        };
         this._vehiculoService.getVehiculo(placa).subscribe(function (vehiculo) {
             _this.vehiculo = vehiculo;
         }, function (error) {
             console.log(error);
+            _this.respuestaError = error.json();
         });
     };
     SalidaComponent.prototype.salidaVehiculo = function () {
@@ -357,6 +373,7 @@ var SalidaComponent = (function () {
             _this._router.navigate(['/consulta']);
         }, function (error) {
             console.log(error);
+            _this._router.navigate(['/consulta']);
         });
     };
     SalidaComponent = __decorate([
@@ -516,11 +533,12 @@ var VehiculosService = (function () {
         console.log('JSONMUESTRA');
         console.log(JSON.stringify(vehiculoEntity));
         return this.http.post(this.urlConsultVehi + url, JSON.stringify(vehiculoEntity), this.options)
-            .map(function (respuesta) { return respuesta.json(); })
-            .catch(this.errorHandler);
+            .map(function (respuesta) { return respuesta.json(); });
+        //.catch(this.errorHandler);
     };
     VehiculosService.prototype.errorHandler = function (error) {
         console.log("Estoy en el response");
+        console.log(error.json());
         return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */].throw(error || "SERVER ERROR");
     };
     VehiculosService = __decorate([

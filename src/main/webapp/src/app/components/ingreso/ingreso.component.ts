@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {VehiculoEntity} from "../../interfaces/vehiculo.interface";
 import {VehiculosService} from '../../services/vehiculos.service';
+import {RespuestaError} from "../../interfaces/respuesta.interface";
 import {Router} from '@angular/router';
+import "rxjs/Rx";
 
 @Component({
   selector: 'app-ingreso',
@@ -17,7 +19,12 @@ export class IngresoComponent implements OnInit {
     fechaIngreso:null,
     fechaSalida:null,
     valorPagar:null
-  }
+  };
+
+  respuestaError:RespuestaError={
+    errorCode:"",
+    errorMessage:""
+  };
 
   constructor(public _vehiculoService: VehiculosService, private _router:Router) { }
 
@@ -31,6 +38,7 @@ export class IngresoComponent implements OnInit {
         console.log(vehiculo);
       },(error)=>{
         console.log(error);
+        this.respuestaError = error.json();
       });
   }
 

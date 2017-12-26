@@ -1,5 +1,12 @@
 <h1>Salida de Vehiculo</h1>
 <hr>
+<div class="row animated fadeIn fast" *ngIf="respuestaError.errorCode == 'Error'">
+<div class="col-md-12">
+  <div class="alert alert-info" role="alert">
+    {{respuestaError.errorMessage}}
+  </div>
+</div>
+</div>
   <div *ngIf="vehiculo == null" class="row animated fadeIn">
     <div class="col-md-4">
       <form onsubmit="return false">
@@ -14,37 +21,45 @@
   </div>
 
   <div *ngIf="vehiculo != null" class="row animated fadeIn">
-    <div class="col-md-4">
+    <div class="col-md-12">
       <form (ngSubmit)="salidaVehiculo()" #forma="ngForm">
-        <div class="form-group">
+        <div class="row">
+          <div class="col-md-4">
             <label>Placa</label>
-            <input [(ngModel)]="vehiculo.placa" name="placa" class="form-control" placeholder="Placa Vehiculo" required>
+            <input [(ngModel)]="vehiculo.placa" disabled name="placa" class="form-control" placeholder="Placa Vehiculo" required>
+          </div>
+          <div class="col-md-4">
+            <label>Tipo Vehiculo</label>
+            <select [(ngModel)]="vehiculo.tipoVehiculo" disabled class="form-control" name="tipovehiculo">
+              <option value="1">CARRO</option>
+              <option value="2">MOTO</option>
+            </select>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Tipo Vehiculo</label>
-          <select [(ngModel)]="vehiculo.tipoVehiculo" class="form-control" name="tipovehiculo">
-            <option value="1">CARRO</option>
-            <option value="2">MOTO</option>
-          </select>
+        <div class="row">
+          <div class="col-md-4">
+            <label>Fecha Ingreso</label>
+            <input value="{{vehiculo.fechaIngreso | date:'yyyy-MM-dd HH:mm a z'}}" disabled class="form-control" name="fechaIngreso">
+          </div>
+          <div class="col-md-4">
+            <label>Fecha Salida</label>
+            <input value="{{vehiculo.fechaSalida | date:'yyyy-MM-dd HH:mm a z'}}" disabled class="form-control" name="fechaSalida">
+          </div>
         </div>
-        <div class="form-group">
-          <label>Cilindraje</label>
-          <input [(ngModel)]="vehiculo.cilindraje" class="form-control" name="cilindraje">
+        <div class="row">
+          <div class="col-md-4">
+            <label>Cilindraje</label>
+            <input [(ngModel)]="vehiculo.cilindraje" disabled class="form-control" name="cilindraje">
+          </div>
+          <div class="col-md-4">
+            <label>Total Pagar</label>
+            <input value="{{vehiculo.valorPagar}}" class="form-control" disabled name="costo">
+          </div>
         </div>
-        <div class="form-group">
-          <label>Fecha Ingreso</label>
-          <input value="{{vehiculo.fechaIngreso | date:'yyyy-MM-dd HH:mm a z'}}" class="form-control" name="fechaIngreso">
-        </div>
-        <div class="form-group">
-          <label>Fecha Salida</label>
-          <input value="{{vehiculo.fechaSalida | date:'yyyy-MM-dd HH:mm a z'}}" class="form-control" name="fechaSalida">
-        </div>
-        <div class="form-group">
-          <label>Total Pagar</label>
-          <input value="{{vehiculo.valorPagar}}" class="form-control" name="costo">
-        </div>
-        <div class="form-group">
-          <button [disabled]="!forma.valid" class="btn btn-outline-primary" type="submit">Pagar</button>
+        <div class="row">
+          <div class="col-md-4">
+            <button class="btn btn-outline-primary" type="submit">Pagar</button>
+          </div>
         </div>
       </form>
       </div>

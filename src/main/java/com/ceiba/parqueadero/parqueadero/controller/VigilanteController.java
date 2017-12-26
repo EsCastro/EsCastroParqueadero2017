@@ -70,6 +70,7 @@ public class VigilanteController {
 	public Vehiculo salidaVehiculo(@PathVariable String placa) throws ParseException{
 		Vehiculo vehiculo = vehiculoService.getVehiculoByPlaca(placa);
 		Parqueadero parqueadero = new Parqueadero();
+				
 		//vehiculo.setFechaSalida(new Date());
 		if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
 			vehiculo = parqueadero.valorPagarCarro(vehiculo);

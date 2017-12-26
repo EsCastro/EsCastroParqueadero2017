@@ -1,5 +1,12 @@
 <h1>Ingreso de Vehiculo</h1>
 <hr>
+<div class="row animated fadeIn fast" *ngIf="respuestaError.errorCode == 'Error'">
+<div class="col-md-12">
+  <div class="alert alert-info" role="alert">
+    {{respuestaError.errorMessage}}
+  </div>
+</div>
+</div>
 
   <div class="row animated fadeIn">
     <div class="col-md-4">

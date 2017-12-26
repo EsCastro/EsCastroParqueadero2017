@@ -17,6 +17,7 @@ public final class MyValues {
 	public static final String INICIAL_PLACA_AUTORIZADA = "A";
 	public static final String ERROR_CUPO_MAX_MOTO = "El cupo maximo para Motos es de " + CUPO_MOTOS + " puestos";
 	public static final String ERROR_CUPO_MAX_CARRO = "El cupo maximo para Carros es de " + CUPO_CARROS + " puestos";
+	public static final String ERROR_NO_HAY_VEHICULOS = "No existen vehiculos con la placa indicada";
 	public static final String ERROR_DIA_HABIL = "No puede ingresar porque no esta en un dia habil";
 	public static final int DIA_NO_HABIL_1 = Calendar.SUNDAY;
 	public static final int DIA_NO_HABIL_2 = Calendar.MONDAY;

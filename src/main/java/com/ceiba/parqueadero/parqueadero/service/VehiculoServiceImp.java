@@ -7,8 +7,12 @@ import com.ceiba.parqueadero.parqueadero.builder.VehiculoBuilder;
 import com.ceiba.parqueadero.parqueadero.dao.VehiculoRespository;
 import com.ceiba.parqueadero.parqueadero.dto.Vehiculo;
 import com.ceiba.parqueadero.parqueadero.entities.VehiculoEntity;
+import com.ceiba.parqueadero.parqueadero.exeptions.ResourceNotFoundException;
+
+import static com.ceiba.parqueadero.parqueadero.util.MyValues.ERROR_CUPO_MAX_CARRO;
 
 import java.util.Date;
+import static com.ceiba.parqueadero.parqueadero.util.MyValues.*;
 
 @Service
 public class VehiculoServiceImp implements VehiculoService{
@@ -23,6 +27,9 @@ public class VehiculoServiceImp implements VehiculoService{
 	@Override
 	public Vehiculo getVehiculoByPlaca(String placa) {
 		VehiculoEntity vehiculo = vehiculoRespository.findOne(placa);
+		
+		if(vehiculo == null)
+			throw new ResourceNotFoundException(5, ERROR_NO_HAY_VEHICULOS);
 		vehiculo.setFechaSalida(new Date());
 		return VehiculoBuilder.convertirADominio(vehiculo);
 	}
