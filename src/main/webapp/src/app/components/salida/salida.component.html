@@ -49,17 +49,16 @@
         <div class="row">
           <div class="col-md-4">
             <label>Cilindraje</label>
-            <input [(ngModel)]="vehiculo.cilindraje" disabled class="form-control" name="cilindraje">
+            <input [(ngModel)]="vehiculo.cilindraje" disabled=true class="form-control" name="cilindraje">
           </div>
           <div class="col-md-4">
             <label>Total Pagar</label>
             <input value="{{vehiculo.valorPagar}}" class="form-control" disabled name="costo">
           </div>
         </div>
-        <div class="row">
+        <br>
           <div class="col-md-4">
             <button class="btn btn-outline-primary" type="submit">Pagar</button>
-          </div>
         </div>
       </form>
       </div>

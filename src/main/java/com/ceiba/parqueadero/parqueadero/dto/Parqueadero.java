@@ -70,17 +70,15 @@ public class Parqueadero {
         if(diferencia>60) {
             minutos=(int)Math.floor(diferencia/60);
             diferencia=diferencia-(minutos*60);
+            if(minutos > 0)
+            	horas++;
         }
         
-        if(dias > 0 && horas <= LIMITE_VALOR_DIA && minutos > 0){
-        	valorPagar = ((dias * VALOR_DIA_CARRO) + ((horas + 1) * VALOR_HORA_CARRO));
-        }else if(dias > 0 && horas <= LIMITE_VALOR_DIA && minutos == 0){
+        if(dias > 0 && horas <= LIMITE_VALOR_DIA){
         	valorPagar = ((dias * VALOR_DIA_CARRO) + (horas * VALOR_HORA_CARRO));
         }else if(dias > 0 && horas > LIMITE_VALOR_DIA){
         	valorPagar = ((dias + 1) * VALOR_DIA_CARRO);
-        }else if(dias == 0 && horas <= LIMITE_VALOR_DIA && minutos > 0){
-        	valorPagar = ((horas + 1) * VALOR_HORA_CARRO);
-        }else if(dias == 0 && horas <= LIMITE_VALOR_DIA && minutos == 0){
+        }else if(dias == 0 && horas <= LIMITE_VALOR_DIA){
         	valorPagar = (horas * VALOR_HORA_CARRO);
         }else if(dias == 0 && horas > LIMITE_VALOR_DIA){
         	valorPagar = ((dias + 1) * VALOR_DIA_CARRO);
@@ -113,17 +111,15 @@ public class Parqueadero {
         if(diferencia>60) {
             minutos=(int)Math.floor(diferencia/60);
             diferencia=diferencia-(minutos*60);
+            if(minutos > 0)
+            	horas++;
         }
         
-    	if(dias > 0 && horas <= LIMITE_VALOR_DIA && minutos > 0){
-        	valorPagar = ((dias * VALOR_DIA_MOTO) + ((horas + 1) * VALOR_HORA_MOTO));
-        }else if(dias > 0 && horas <= LIMITE_VALOR_DIA && minutos == 0){
+    	if(dias > 0 && horas <= LIMITE_VALOR_DIA){
         	valorPagar = ((dias * VALOR_DIA_MOTO) + (horas * VALOR_HORA_MOTO));
         }else if(dias > 0 && horas > LIMITE_VALOR_DIA){
         	valorPagar = ((dias + 1) * VALOR_DIA_MOTO);
-        }else if(dias == 0 && horas <= LIMITE_VALOR_DIA && minutos > 0){
-        	valorPagar = ((horas + 1) * VALOR_HORA_MOTO);
-        }else if(dias == 0 && horas <= LIMITE_VALOR_DIA && minutos == 0){
+        }else if(dias == 0 && horas <= LIMITE_VALOR_DIA){
         	valorPagar = (horas * VALOR_HORA_MOTO);
         }else if(dias == 0 && horas > LIMITE_VALOR_DIA){
         	valorPagar = ((dias + 1) * VALOR_DIA_MOTO);
