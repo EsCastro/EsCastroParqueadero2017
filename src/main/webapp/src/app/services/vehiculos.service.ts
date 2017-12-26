@@ -48,11 +48,13 @@ export class VehiculosService {
     console.log(vehiculoEntity);
     console.log('JSONMUESTRA');
     console.log(JSON.stringify(vehiculoEntity));
-    return this.http.post(this.urlConsultVehi+url,JSON.stringify(vehiculoEntity),this.options).map((respuesta: Response) => respuesta.json())
-           .catch(this.errorHandler);
+    return this.http.post(this.urlConsultVehi+url,JSON.stringify(vehiculoEntity),this.options)
+                    .map((respuesta: Response) => respuesta.json())
+                    .catch(this.errorHandler);
   }
 
   errorHandler(error:Response){
+    console.log("Estoy en el response");
     return Observable.throw(error||"SERVER ERROR");
   }
 

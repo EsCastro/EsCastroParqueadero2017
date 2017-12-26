@@ -23,6 +23,7 @@ public class VehiculoServiceImp implements VehiculoService{
 	@Override
 	public Vehiculo getVehiculoByPlaca(String placa) {
 		VehiculoEntity vehiculo = vehiculoRespository.findOne(placa);
+		vehiculo.setFechaSalida(new Date());
 		return VehiculoBuilder.convertirADominio(vehiculo);
 	}
 

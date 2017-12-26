@@ -1,8 +1,12 @@
 package com.ceiba.parqueadero.parqueadero.exeptions;
 
-public class ExceptionResponse {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+public class ExceptionResponse {
+	
+	@JsonProperty("errorCode")
     private String errorCode;
+	@JsonProperty("errorMessage")
     private String errorMessage;
 
     public ExceptionResponse() {

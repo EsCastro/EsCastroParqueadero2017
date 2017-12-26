@@ -2,6 +2,7 @@ package com.ceiba.parqueadero.parqueadero.dto.integracion;
 
 import java.text.ParseException;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -34,9 +35,9 @@ public class VigilanteControllerTest {
 	private VehiculoService vehiculoService;
 	
 	private static final String PLACA = "PPA25D";
-	String exampleCourseJson = "{\"tipoVehiculo\":2,\"placa\":\"PPA25D\",\"cilindraje\":200,\"fechaIngreso\":1514238486491,\"fechaSalida\":1514238510792,\"valorPagar\":0.0}";
+	String exampleCourseJson = "{\"tipoVehiculo\":2,\"placa\":\"PPA25D\",\"cilindraje\":200,\"fechaIngreso\":1514238486491,\"fechaSalida\":1513861200000,\"valorPagar\":0.0}";
 	
-	/*@Test
+	@Test
 	public void salidaVehiculoTest() throws Exception{
 		//Arrange
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder();
@@ -51,7 +52,7 @@ public class VigilanteControllerTest {
 				MediaType.APPLICATION_JSON);
 		
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-		String expected = "{\"tipoVehiculo\":1,\"placa\":\"PPA25D\",\"cilindraje\":200,\"fechaIngreso\":1513774800000,\"fechaSalida\":1514240358586,\"valorPagar\":0.0}";
+		String expected = "{\"tipoVehiculo\":1,\"placa\":\"PPA25D\",\"cilindraje\":200,\"fechaIngreso\":1513774800000,\"fechaSalida\":1513861200000,\"valorPagar\":8000.0}";
 		System.out.println("Lo esperado es: "+expected);
 		
 		System.out.println("El resultado es: "+result.getResponse().getContentAsString());
@@ -59,10 +60,10 @@ public class VigilanteControllerTest {
 		//Assert
 		JSONAssert.assertEquals(expected, result.getResponse()
 				.getContentAsString(), false);
-	}*/
+	}
 	
 	@Test
-	public void salidaVehiculoTest() throws Exception{
+	public void ingresarVehiculoTest() throws Exception{
 		//Arrange
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder();
 		Vehiculo vehiculo = vehiculoTestDataBuilder.conFechaIngreso("2017-12-20 8:00:00").conFechaSalida("2017-12-21 8:00:00").build();
@@ -78,10 +79,7 @@ public class VigilanteControllerTest {
 		
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		String expected = "{\"tipoVehiculo\":1,\"placa\":\"PPA25D\",\"cilindraje\":200,\"fechaIngreso\":1513774800000,\"fechaSalida\":1513861200000,\"valorPagar\":0.0}";
-		System.out.println("Lo esperado es: "+expected);
-		
-		System.out.println("El resultado es: "+result.getResponse().getContentAsString());
-		
+	
 		//Assert
 		JSONAssert.assertEquals(expected, result.getResponse()
 				.getContentAsString(), false);		

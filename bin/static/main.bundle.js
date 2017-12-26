@@ -515,10 +515,12 @@ var VehiculosService = (function () {
         console.log(vehiculoEntity);
         console.log('JSONMUESTRA');
         console.log(JSON.stringify(vehiculoEntity));
-        return this.http.post(this.urlConsultVehi + url, JSON.stringify(vehiculoEntity), this.options).map(function (respuesta) { return respuesta.json(); })
+        return this.http.post(this.urlConsultVehi + url, JSON.stringify(vehiculoEntity), this.options)
+            .map(function (respuesta) { return respuesta.json(); })
             .catch(this.errorHandler);
     };
     VehiculosService.prototype.errorHandler = function (error) {
+        console.log("Estoy en el response");
         return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */].throw(error || "SERVER ERROR");
     };
     VehiculosService = __decorate([

@@ -26,12 +26,11 @@ public class Parqueadero {
 	 */
 	public boolean cupoDisponible(int tipoVehiculo){
 		boolean ban = false;
-		int cupoCarro = cupoUsoCarros;
-		int cupoMoto = cupoUsoCarros;
 		
-		if((tipoVehiculo == TIPO_CARRO) && (cupoCarro <= CUPO_CARROS)){
+		System.out.println("cupo uso  "+cupoUsoMotos);
+		if((tipoVehiculo == TIPO_CARRO) && (cupoUsoCarros <= CUPO_CARROS)){
 			ban = true;
-		}else if((tipoVehiculo == TIPO_MOTO) && (cupoMoto <= CUPO_MOTOS)){
+		}else if((tipoVehiculo == TIPO_MOTO) && (cupoUsoMotos <= CUPO_MOTOS)){
 			ban = true;
 		}		
 		return ban;
