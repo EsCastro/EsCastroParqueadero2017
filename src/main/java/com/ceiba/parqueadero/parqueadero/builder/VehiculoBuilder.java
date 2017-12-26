@@ -14,17 +14,5 @@ public class VehiculoBuilder {
 		}
 		return vehiculo;
 	}
-	
-	public static VehiculoEntity convertirAEntity(Vehiculo vehiculo) {
-		VehiculoEntity vehiculoEntity = new VehiculoEntity();
-		
-		vehiculoEntity.setPlaca(vehiculo.getPlaca());
-		vehiculoEntity.setTipoVehiculo(vehiculo.getTipoVehiculo());
-		vehiculoEntity.setCilindraje(vehiculo.getCilindraje());
-		vehiculoEntity.setFechaIngreso(vehiculo.getFechaIngreso());
-		vehiculoEntity.setFechaSalida(vehiculo.getFechaSalida());
-
-		return vehiculoEntity;
-	}	
 
 }
