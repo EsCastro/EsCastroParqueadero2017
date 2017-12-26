@@ -53,22 +53,92 @@ public class Parqueadero {
 	}
 	
 	/**
-	 * Devuelve el valor a pagar
-	 * @param vechiculo
+	 * Cobrar Carro
 	 * @return
 	 * @throws ParseException 
 	 */
-	public Vehiculo totalPagar(Vehiculo vehiculo) throws ParseException{		
-		double valorPagar = 0.0;
+	public Vehiculo valorPagarCarro(Vehiculo vehiculo) throws ParseException{
+		int dias=0;
+        int horas=0;
+        int minutos=0;
+        int diferencia=0;
+        double valorPagar=0.0;
+		diferencia = (int)((vehiculo.getFechaSalida().getTime() - vehiculo.getFechaIngreso().getTime()) / 1000);
 		
-		if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
-			valorPagar = vehiculo.valorPagarCarro();
-		}else if (vehiculo.getTipoVehiculo() == TIPO_MOTO){
-			valorPagar = vehiculo.valorPagarMoto();
-		}
+       if(diferencia>86400) {
+            dias=(int)Math.floor(diferencia/86400);
+            diferencia=diferencia-(dias*86400);
+        }
+        if(diferencia>3600) {
+            horas=(int)Math.floor(diferencia/3600);
+            diferencia=diferencia-(horas*3600);
+        }
+        if(diferencia>60) {
+            minutos=(int)Math.floor(diferencia/60);
+            diferencia=diferencia-(minutos*60);
+        }
+        
+        if(dias > 0 && horas <= LIMITE_VALOR_DIA && minutos > 0){
+        	valorPagar = ((dias * VALOR_DIA_CARRO) + ((horas + 1) * VALOR_HORA_CARRO));
+        }else if(dias > 0 && horas <= LIMITE_VALOR_DIA && minutos == 0){
+        	valorPagar = ((dias * VALOR_DIA_CARRO) + (horas * VALOR_HORA_CARRO));
+        }else if(dias > 0 && horas > LIMITE_VALOR_DIA){
+        	valorPagar = ((dias + 1) * VALOR_DIA_CARRO);
+        }else if(dias == 0 && horas <= LIMITE_VALOR_DIA && minutos > 0){
+        	valorPagar = ((horas + 1) * VALOR_HORA_CARRO);
+        }else if(dias == 0 && horas <= LIMITE_VALOR_DIA && minutos == 0){
+        	valorPagar = (horas * VALOR_HORA_CARRO);
+        }else if(dias == 0 && horas > LIMITE_VALOR_DIA){
+        	valorPagar = ((dias + 1) * VALOR_DIA_CARRO);
+        }
+        vehiculo.setValorPagar(valorPagar);
+        return vehiculo;		
+	}
+	
+	/**
+	 * Cobrar Carro
+	 * @return
+	 * @throws ParseException 
+	 */
+	public Vehiculo valorPagarMoto(Vehiculo vehiculo) throws ParseException{
+		int dias=0;
+        int horas=0;
+        int minutos=0;
+        int diferencia=0;
+        double valorPagar=0.0;
+		diferencia = (int)((vehiculo.getFechaSalida().getTime() - vehiculo.getFechaIngreso().getTime()) / 1000);
 		
-		vehiculo.setValorPagar(valorPagar);
-		return vehiculo;
+        if(diferencia>86400) {
+            dias=(int)Math.floor(diferencia/86400);
+            diferencia=diferencia-(dias*86400);
+        }
+        if(diferencia>3600) {
+            horas=(int)Math.floor(diferencia/3600);
+            diferencia=diferencia-(horas*3600);
+        }
+        if(diferencia>60) {
+            minutos=(int)Math.floor(diferencia/60);
+            diferencia=diferencia-(minutos*60);
+        }
+        
+    	if(dias > 0 && horas <= LIMITE_VALOR_DIA && minutos > 0){
+        	valorPagar = ((dias * VALOR_DIA_MOTO) + ((horas + 1) * VALOR_HORA_MOTO));
+        }else if(dias > 0 && horas <= LIMITE_VALOR_DIA && minutos == 0){
+        	valorPagar = ((dias * VALOR_DIA_MOTO) + (horas * VALOR_HORA_MOTO));
+        }else if(dias > 0 && horas > LIMITE_VALOR_DIA){
+        	valorPagar = ((dias + 1) * VALOR_DIA_MOTO);
+        }else if(dias == 0 && horas <= LIMITE_VALOR_DIA && minutos > 0){
+        	valorPagar = ((horas + 1) * VALOR_HORA_MOTO);
+        }else if(dias == 0 && horas <= LIMITE_VALOR_DIA && minutos == 0){
+        	valorPagar = (horas * VALOR_HORA_MOTO);
+        }else if(dias == 0 && horas > LIMITE_VALOR_DIA){
+        	valorPagar = ((dias + 1) * VALOR_DIA_MOTO);
+        }
+        if(vehiculo.getCilindraje() >= ALTO_CILINDRAJE){
+        	valorPagar = valorPagar + VALOR_ADICIONAL_CILINDRAJE;
+        }        
+        vehiculo.setValorPagar(valorPagar);
+        return vehiculo;		
 	}
 	
 	public int getCupoMotos() {

@@ -57,7 +57,7 @@ public class ParqueaderoTest {
 		Parqueadero parqueadero = new Parqueadero();
 				
 		//Act
-		Vehiculo vehiculoPagar = parqueadero.totalPagar(vehiculo);
+		Vehiculo vehiculoPagar = parqueadero.valorPagarCarro(vehiculo);
 		
 		//Assert
 		Assert.assertTrue("Not equals", VLR_PAGAR_CARRO -  vehiculoPagar.getValorPagar() == 0);
@@ -71,7 +71,7 @@ public class ParqueaderoTest {
 		Parqueadero parqueadero = new Parqueadero();
 		
 		//Act
-		Vehiculo vehiculoPagar = parqueadero.totalPagar(vehiculo);
+		Vehiculo vehiculoPagar = parqueadero.valorPagarMoto(vehiculo);
 		
 		//Assert
 		Assert.assertTrue("Not equals", VLR_PAGAR_MOTO -  vehiculoPagar.getValorPagar() == 0);
@@ -85,7 +85,7 @@ public class ParqueaderoTest {
 		Parqueadero parqueadero = new Parqueadero();
 		
 		//Act
-		Vehiculo vehiculoPagar = parqueadero.totalPagar(vehiculo);
+		Vehiculo vehiculoPagar = parqueadero.valorPagarMoto(vehiculo);
 		
 		//Assert
 		Assert.assertTrue("Not equals", VLR_PAGAR_MOTO_ALT_CC -  vehiculoPagar.getValorPagar() == 0);
