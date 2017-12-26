@@ -19,7 +19,6 @@ import com.ceiba.parqueadero.parqueadero.service.VehiculoService;
 import static com.ceiba.parqueadero.parqueadero.util.MyValues.*;
 
 import java.text.ParseException;
-import java.util.Date;
 
 @RestController
 //@CrossOrigin(origins="http://localhost:8085",allowedHeaders="*")
@@ -36,13 +35,12 @@ public class VigilanteController {
 	//@PostMapping("ingresarVehiculo")
 	public Vehiculo ingresarVehiculo(@RequestBody VehiculoEntity vehiculoEntity){
 		Parqueadero parqueadero = new Parqueadero();
-		Vehiculo vehiculo = VehiculoBuilder.convertirADominio(vehiculoEntity);
-		
+		Vehiculo vehiculo = VehiculoBuilder.convertirADominio(vehiculoEntity);		
 		//Valida si hay cupo disponible
 		if(!parqueadero.placaAutorizada(vehiculo.getPlaca())){
 			throw new ResourceNotFoundException(5, ERROR_DIA_HABIL);
 		}else if(!parqueadero.cupoDisponible(vehiculo.getTipoVehiculo())){
-			if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
+			if(vehiculo.getTipoVehiculo() == TIPO_CARRO){				
 				throw new ResourceNotFoundException(5, ERROR_CUPO_MAX_CARRO);
 			}else{
 				throw new ResourceNotFoundException(5, ERROR_CUPO_MAX_MOTO);

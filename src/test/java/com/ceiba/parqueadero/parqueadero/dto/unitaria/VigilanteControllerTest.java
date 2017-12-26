@@ -20,6 +20,7 @@ import com.ceiba.parqueadero.parqueadero.dto.Vehiculo;
 import com.ceiba.parqueadero.parqueadero.service.VehiculoService;
 
 import testdatabuilder.VehiculoTestDataBuilder;
+import static com.ceiba.parqueadero.parqueadero.util.MyValues.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = VigilanteController.class, secure = false)
@@ -120,6 +121,26 @@ public class VigilanteControllerTest {
 		JSONAssert.assertEquals(expected, result.getResponse()
 				.getContentAsString(), false);		
 	}
+	
+	@Test
+	public void ingresarVehiculoCarroExceptionTest() throws Exception{
+		//Arrange
+		String expected = "{\"errorCode\":\"Error\",\"errorMessage\":\"El cupo maximo para Carros es de 20 puestos\"}";
+		String exampleCourseJson = "{\"tipoVehiculo\":1,\"placa\":\"PPA25D\",\"cilindraje\":1200,\"fechaIngreso\":1513774800000,\"fechaSalida\":null,\"valorPagar\":0.0}";
+		setCupoUsoCarros(CUPO_CARROS+1);
+		
+		//Act
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+				"/ingresarVehiculo")
+				.accept(MediaType.APPLICATION_JSON).content(exampleCourseJson)
+				.contentType(MediaType.APPLICATION_JSON);
+		
+		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+		
+		//Assert
+		JSONAssert.assertEquals(expected, result.getResponse()
+				.getContentAsString(), false);		
+	}	
 	
 	@Test
 	public void liberarCupoTest() throws Exception{
