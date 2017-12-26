@@ -50,7 +50,7 @@ public class VigilanteController {
 			setCupoUsoCarros(cupoCarro + 1);
 			vehiculo = vehiculoService.saveVehiculo(vehiculoEntity); 
 			return (vehiculo != null)?vehiculo:null;
-		}else{
+		}else {
 			int cupoMoto = getCupoUsoMotos();
 			setCupoUsoMotos(cupoMoto + 1);
 			vehiculo = vehiculoService.saveVehiculo(vehiculoEntity);

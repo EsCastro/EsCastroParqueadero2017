@@ -22,6 +22,7 @@ import com.ceiba.parqueadero.parqueadero.service.VehiculoService;
 import testdatabuilder.VehiculoTestDataBuilder;
 import static com.ceiba.parqueadero.parqueadero.util.MyValues.*;
 
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = VigilanteController.class, secure = false)
 public class VigilanteControllerTest {
@@ -31,7 +32,7 @@ public class VigilanteControllerTest {
 	@MockBean
 	private VehiculoService vehiculoService;
 	
-	private static final String PLACA = "PPA25D";	
+	private static final String PLACA = "PPA25D";
 	
 	@Test
 	public void salidaVehiculoCarroTest() throws Exception{
@@ -159,5 +160,5 @@ public class VigilanteControllerTest {
 
 		//Assert
 		Assert.assertEquals(result.getResponse().getContentAsString(), "");
-	}
+	}	
 }
