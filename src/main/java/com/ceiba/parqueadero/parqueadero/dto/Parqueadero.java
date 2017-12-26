@@ -27,7 +27,6 @@ public class Parqueadero {
 	public boolean cupoDisponible(int tipoVehiculo){
 		boolean ban = false;
 		
-		System.out.println("cupo uso  "+cupoUsoMotos);
 		if((tipoVehiculo == TIPO_CARRO) && (cupoUsoCarros <= CUPO_CARROS)){
 			ban = true;
 		}else if((tipoVehiculo == TIPO_MOTO) && (cupoUsoMotos <= CUPO_MOTOS)){

@@ -50,13 +50,11 @@ public class VigilanteController {
 		}else if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
 			int cupoCarro = getCupoUsoCarros();
 			setCupoUsoCarros(cupoCarro + 1);
-			System.out.println("Cupo Carro es:" + cupoCarro);
 			vehiculo = vehiculoService.saveVehiculo(vehiculoEntity); 
 			return (vehiculo != null)?vehiculo:null;
 		}else{
 			int cupoMoto = getCupoUsoMotos();
 			setCupoUsoMotos(cupoMoto + 1);
-			System.out.println("Cupo Motos es:" + cupoMoto);
 			vehiculo = vehiculoService.saveVehiculo(vehiculoEntity);
 			return (vehiculo != null)?vehiculo:null;
 		}
