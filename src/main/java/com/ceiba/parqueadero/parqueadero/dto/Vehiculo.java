@@ -23,24 +23,12 @@ public class Vehiculo {
 		return tipoVehiculo;
 	}
 
-	public void setTipoVehiculo(int tipoVehiculo) {
-		this.tipoVehiculo = tipoVehiculo;
-	}
-
 	public String getPlaca() {
 		return placa;
 	}
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
-
 	public int getCilindraje() {
 		return cilindraje;
-	}
-
-	public void setCilindraje(int cilindraje) {
-		this.cilindraje = cilindraje;
 	}
 
 	public Date getFechaIngreso() {
@@ -53,10 +41,6 @@ public class Vehiculo {
 
 	public Date getFechaSalida() {
 		return fechaSalida;
-	}
-
-	public void setFechaSalida(Date fechaSalida) {
-		this.fechaSalida = fechaSalida;
 	}
 
 	public double getValorPagar() {

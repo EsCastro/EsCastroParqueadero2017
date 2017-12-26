@@ -130,17 +130,4 @@ public class Parqueadero {
         vehiculo.setValorPagar(valorPagar);
         return vehiculo;		
 	}
-	
-	public int getCupoMotos() {
-		return cupoMotos;
-	}
-	public void setCupoMotos(int cupoMotos) {
-		this.cupoMotos = cupoMotos;
-	}
-	public int getCupoCarros() {
-		return cupoCarros;
-	}
-	public void setCupoCarros(int cupoCarros) {
-		this.cupoCarros = cupoCarros;
-	}
 }
