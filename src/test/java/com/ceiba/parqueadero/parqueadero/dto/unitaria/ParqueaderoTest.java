@@ -50,7 +50,7 @@ public class ParqueaderoTest {
 	}
 	
 	@Test
-	public void totalPagarCarro() throws ParseException{
+	public void valorPagarCarroTest() throws ParseException{
 		//Arrange
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder().conFechaIngreso("2017-12-20 8:00:00").conFechaSalida("2017-12-21 8:00:00");
 		Vehiculo vehiculo = vehiculoTestDataBuilder.build();
@@ -64,7 +64,7 @@ public class ParqueaderoTest {
 	}
 	
 	@Test
-	public void totalPagarMoto() throws ParseException{
+	public void valorPagarMotoTest() throws ParseException{
 		//Arrange
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder();
 		Vehiculo vehiculo = vehiculoTestDataBuilder.conTipoVehiculo(TIPO_VEHICULO_MOTO).conFechaIngreso("2017-12-20 8:00:00").conFechaSalida("2017-12-21 8:00:00").build();
@@ -75,6 +75,20 @@ public class ParqueaderoTest {
 		
 		//Assert
 		Assert.assertTrue("Not equals", VLR_PAGAR_MOTO -  vehiculoPagar.getValorPagar() == 0);
+	}
+	
+	@Test
+	public void valorPagarMotoAltCCTest() throws ParseException{
+		//Arrange
+		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder();
+		Vehiculo vehiculo = vehiculoTestDataBuilder.conTipoVehiculo(TIPO_VEHICULO_MOTO).conCilindraje(CILINDRAJE_ALTO).conFechaIngreso("2017-12-20 8:00:00").conFechaSalida("2017-12-21 8:00:00").build();
+		Parqueadero parqueadero = new Parqueadero();
+		
+		//Act
+		Vehiculo vehiculoPagar = parqueadero.valorPagarMoto(vehiculo);
+		
+		//Assert
+		Assert.assertTrue("Not equals", (VLR_PAGAR_MOTO + VALOR_ADICIONAL_CILINDRAJE) -  vehiculoPagar.getValorPagar() == 0);
 	}
 	
 	@Test
