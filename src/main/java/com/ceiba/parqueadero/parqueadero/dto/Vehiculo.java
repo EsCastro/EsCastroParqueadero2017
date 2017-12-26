@@ -35,10 +35,6 @@ public class Vehiculo {
 		return fechaIngreso;
 	}
 
-	public void setFechaIngreso(Date fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
-	}
-
 	public Date getFechaSalida() {
 		return fechaSalida;
 	}
