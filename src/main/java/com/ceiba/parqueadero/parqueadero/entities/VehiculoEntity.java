@@ -62,12 +62,4 @@ public class VehiculoEntity {
 	public void setFechaSalida(Date fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
-
-	@Override
-	public String toString() {
-		return "VehiculoEntity [placa=" + placa + ", cilindraje=" + cilindraje + ", tipoVehiculo="
-				+ tipoVehiculo + ", fechaIngreso=" + fechaIngreso + ", fechaSalida=" + fechaSalida + "]";
-	}
-	
-	
 }

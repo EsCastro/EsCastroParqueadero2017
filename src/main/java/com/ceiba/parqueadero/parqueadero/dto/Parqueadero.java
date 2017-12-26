@@ -4,16 +4,10 @@ import static com.ceiba.parqueadero.parqueadero.util.MyValues.*;
 
 import java.text.ParseException;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Parqueadero {
 	private int cupoMotos;
 	private int cupoCarros;
-	private double vlrHoraMoto;
-	private double vlrHoraCarro;
-	private double vlrDiaMoto;
-	private double vlrDiaCarro;
-	private double vlrAdicionalCc;
 	
 	public Parqueadero() {
 		super();
@@ -153,34 +147,4 @@ public class Parqueadero {
 	public void setCupoCarros(int cupoCarros) {
 		this.cupoCarros = cupoCarros;
 	}
-	public double getVlrHoraMoto() {
-		return vlrHoraMoto;
-	}
-	public void setVlrHoraMoto(double vlrHoraMoto) {
-		this.vlrHoraMoto = vlrHoraMoto;
-	}
-	public double getVlrHoraCarro() {
-		return vlrHoraCarro;
-	}
-	public void setVlrHoraCarro(double vlrHoraCarro) {
-		this.vlrHoraCarro = vlrHoraCarro;
-	}
-	public double getVlrDiaMoto() {
-		return vlrDiaMoto;
-	}
-	public void setVlrDiaMoto(double vlrDiaMoto) {
-		this.vlrDiaMoto = vlrDiaMoto;
-	}
-	public double getVlrDiaCarro() {
-		return vlrDiaCarro;
-	}
-	public void setVlrDiaCarro(double vlrDiaCarro) {
-		this.vlrDiaCarro = vlrDiaCarro;
-	}
-	public double getVlrAdicionalCc() {
-		return vlrAdicionalCc;
-	}
-	public void setVlrAdicionalCc(double vlrAdicionalCc) {
-		this.vlrAdicionalCc = vlrAdicionalCc;
-	}		
 }

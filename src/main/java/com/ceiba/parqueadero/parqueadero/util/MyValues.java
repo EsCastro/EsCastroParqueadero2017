@@ -23,9 +23,7 @@ public final class MyValues {
 	public static int cupoUsoCarros = 1;
 	public static int cupoUsoMotos = 1;
 	
-	private MyValues() {
-	    // No requiere parametros de entrada
-	}
+	private MyValues() {/*No requiere parametros de entrada */}
 	
 	public static int getCupoUsoCarros() {
 		return cupoUsoCarros;
