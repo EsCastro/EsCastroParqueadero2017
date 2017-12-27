@@ -160,5 +160,5 @@ public class VigilanteControllerTest {
 
 		//Assert
 		Assert.assertEquals(result.getResponse().getContentAsString(), "");
-	}	
+	}
 }

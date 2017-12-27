@@ -31,6 +31,7 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('org.springframework.boot:spring-boot-starter-web')
 	testCompile 'org.mockito:mockito-all:1.10.19'
 }
 
@@ -52,7 +53,7 @@ sourceSets {
 	}
 }
 
-/*processResources {
+processResources {
 	dependsOn "buildAngular"
 }
 
@@ -67,4 +68,4 @@ task buildAngular(type:Exec) {
 	} else {
 		commandLine "ng", "build"
 	}
-}*/
+}

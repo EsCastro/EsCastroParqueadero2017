@@ -39,9 +39,8 @@ public class VehiculoServiceImp implements VehiculoService{
 		if(vehiculoEntity != null){
 			vehiculoEntity.setFechaIngreso(new Date());
 			Vehiculo vehiculo = VehiculoBuilder.convertirADominio(vehiculoRespository.save(vehiculoEntity));
-			System.out.println("Valor vehiculo respuesta " + vehiculo.getPlaca());
 			return VehiculoBuilder.convertirADominio(vehiculoRespository.save(vehiculoEntity));
-		}		
+		}
 		return null;
 	}
 

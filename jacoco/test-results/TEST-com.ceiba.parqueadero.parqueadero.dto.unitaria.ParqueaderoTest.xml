@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.ceiba.parqueadero.parqueadero.dto.unitaria.ParqueaderoTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2017-12-26T22:24:45" hostname="ESTEBAN-CASTRO" time="0.037">
+<testsuite name="com.ceiba.parqueadero.parqueadero.dto.unitaria.ParqueaderoTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2017-12-26T22:59:43" hostname="ESTEBAN-CASTRO" time="0.022">
   <properties/>
-  <testcase name="cupoDisponiblePositivoTest" classname="com.ceiba.parqueadero.parqueadero.dto.unitaria.ParqueaderoTest" time="0.017"/>
-  <testcase name="valorPagarMotoTest" classname="com.ceiba.parqueadero.parqueadero.dto.unitaria.ParqueaderoTest" time="0.004"/>
+  <testcase name="cupoDisponiblePositivoTest" classname="com.ceiba.parqueadero.parqueadero.dto.unitaria.ParqueaderoTest" time="0.007"/>
+  <testcase name="valorPagarMotoTest" classname="com.ceiba.parqueadero.parqueadero.dto.unitaria.ParqueaderoTest" time="0.012"/>
   <testcase name="cupoDisponibleNegativoTest" classname="com.ceiba.parqueadero.parqueadero.dto.unitaria.ParqueaderoTest" time="0.0"/>
-  <testcase name="valorPagarCarroTest" classname="com.ceiba.parqueadero.parqueadero.dto.unitaria.ParqueaderoTest" time="0.007"/>
+  <testcase name="valorPagarCarroTest" classname="com.ceiba.parqueadero.parqueadero.dto.unitaria.ParqueaderoTest" time="0.002"/>
   <testcase name="placaAutorizadaTest" classname="com.ceiba.parqueadero.parqueadero.dto.unitaria.ParqueaderoTest" time="0.0"/>
-  <testcase name="valorPagarMotoAltCCTest" classname="com.ceiba.parqueadero.parqueadero.dto.unitaria.ParqueaderoTest" time="0.002"/>
+  <testcase name="valorPagarMotoAltCCTest" classname="com.ceiba.parqueadero.parqueadero.dto.unitaria.ParqueaderoTest" time="0.0"/>
   <system-out><![CDATA[Fechas***********  24000.0
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

@@ -33,7 +33,7 @@ public class VigilanteController {
 	 */
 	@RequestMapping(value = "ingresarVehiculo", method = RequestMethod.POST)
 	//@PostMapping("ingresarVehiculo")
-	public Vehiculo ingresarVehiculo(@RequestBody VehiculoEntity vehiculoEntity){
+	public Vehiculo ingresarVehiculo(@RequestBody VehiculoEntity vehiculoEntity){		
 		Parqueadero parqueadero = new Parqueadero();
 		Vehiculo vehiculo = VehiculoBuilder.convertirADominio(vehiculoEntity);		
 		//Valida si hay cupo disponible
@@ -48,7 +48,7 @@ public class VigilanteController {
 		}else if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
 			int cupoCarro = getCupoUsoCarros();
 			setCupoUsoCarros(cupoCarro + 1);
-			vehiculo = vehiculoService.saveVehiculo(vehiculoEntity); 
+			vehiculo = vehiculoService.saveVehiculo(vehiculoEntity);
 			return (vehiculo != null)?vehiculo:null;
 		}else {
 			int cupoMoto = getCupoUsoMotos();
@@ -66,6 +66,7 @@ public class VigilanteController {
 	 */
 	@RequestMapping(value = "salidaVehiculo/{placa}", method = RequestMethod.GET)
 	public Vehiculo salidaVehiculo(@PathVariable String placa) throws ParseException{
+		System.out.println("Entro a consultar por placa");
 		Vehiculo vehiculo = vehiculoService.getVehiculoByPlaca(placa);
 		Parqueadero parqueadero = new Parqueadero();
 				
