@@ -18,6 +18,7 @@ public class ParqueaderoTest {
 	private static final int TIPO_VEHICULO_MOTO = 2;
 	private static final int CILINDRAJE_ALTO = 600;
 	private static final String PLACA = "PPA25D";
+	private static final String PLACA_NO_AUTORIZADA = "APA25D";
 	
 	@Test
 	public void cupoDisponibleNegativoTest(){
@@ -71,6 +72,25 @@ public class ParqueaderoTest {
 	}
 	
 	@Test
+	public void placaNoAutorizadaTest(){
+		//Arrange
+		Parqueadero parqueadero = new Parqueadero();
+		Calendar diaHoy = Calendar.getInstance();
+		boolean resultado = false;
+		
+		//Act
+		resultado = parqueadero.placaAutorizada(PLACA_NO_AUTORIZADA);
+				
+		//Assert
+		if((diaHoy.get(Calendar.DAY_OF_WEEK) != DIA_NO_HABIL_1)
+			       || (diaHoy.get(Calendar.DAY_OF_WEEK) != DIA_NO_HABIL_2)){
+			Assert.assertFalse(resultado);
+		}else{
+			Assert.assertTrue(resultado);
+		}
+	}
+	
+	@Test
 	public void valorPagarCarroTest() throws ParseException{
 		//Arrange
 		VehiculoTestDataBuilder vehiculoTestDataBuilder = new VehiculoTestDataBuilder().conFechaIngreso("2017-12-19 8:00:00").conFechaSalida("2017-12-21 18:15:05");
@@ -79,7 +99,6 @@ public class ParqueaderoTest {
 				
 		//Act
 		Vehiculo vehiculoPagar = parqueadero.valorPagarCarro(vehiculo);
-		System.out.println("Fechas***********  "+vehiculoPagar.getValorPagar());
 		
 		//Assert
 		Assert.assertTrue("Not equals", VLR_PAGAR_CARRO -  vehiculoPagar.getValorPagar() == 0);
