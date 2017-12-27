@@ -32,12 +32,9 @@ export class IngresoComponent implements OnInit {
   }
 
   ingresarVehiculo(){
-     console.log(this.vehiculo);
-      this._vehiculoService.createVehiculo(this.vehiculo).subscribe((vehiculo)=>{
+        this._vehiculoService.createVehiculo(this.vehiculo).subscribe((vehiculo)=>{
         this._router.navigate(['/consulta']);
-        console.log(vehiculo);
       },(error)=>{
-        console.log(error);
         this.respuestaError = error.json();
       });
   }

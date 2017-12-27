@@ -37,9 +37,8 @@ public class Parqueadero {
 	public boolean placaAutorizada(String placa){
 		boolean ban = true;
 		Calendar diaHoy = Calendar.getInstance();
-		
-		if((INICIAL_PLACA_AUTORIZADA.equals(placa.substring(0, 1))) && ((diaHoy.get(Calendar.DAY_OF_WEEK) == DIA_NO_HABIL_1)
-															       || (diaHoy.get(Calendar.DAY_OF_WEEK) == DIA_NO_HABIL_2))){
+		if((INICIAL_PLACA_AUTORIZADA.equals(placa.substring(0, 1).toUpperCase())) && ((diaHoy.get(Calendar.DAY_OF_WEEK) != DIA_NO_HABIL_1)
+															       || (diaHoy.get(Calendar.DAY_OF_WEEK) != DIA_NO_HABIL_2))){
 			ban = false;
 		}
 		return ban;

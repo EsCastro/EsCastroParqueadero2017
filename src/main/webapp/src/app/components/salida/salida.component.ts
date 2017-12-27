@@ -6,8 +6,7 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-salida',
-  templateUrl: './salida.component.html',
-  styleUrls: ['./salida.component.css']
+  templateUrl: './salida.component.html'
 })
 export class SalidaComponent implements OnInit {
 

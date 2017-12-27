@@ -10,8 +10,7 @@ export class ConsultaComponent{
   private vehiculosEntity:VehiculoEntity[];
 
   constructor(public _vehiculoService: VehiculosService) {
-     this._vehiculoService.getVehiculos().subscribe((vehiculosEntity) => {
-       console.log(vehiculosEntity);
+       this._vehiculoService.getVehiculos().subscribe((vehiculosEntity) => {
        this.vehiculosEntity = vehiculosEntity;
      },(error)=>{
        console.log(error);
