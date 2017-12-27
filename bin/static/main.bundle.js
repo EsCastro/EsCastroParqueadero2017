@@ -224,7 +224,7 @@ var ConsultaComponent = (function () {
 /***/ "../../../../../src/app/components/ingreso/ingreso.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Ingreso de Vehiculo</h1>\n<hr>\n<div class=\"row animated fadeIn fast\" *ngIf=\"respuestaError.errorCode == 'Error'\">\n<div class=\"col-md-12\">\n  <div class=\"alert alert-info\" role=\"alert\">\n    {{respuestaError.errorMessage}}\n  </div>\n</div>\n</div>\n\n  <div class=\"row animated fadeIn\">\n    <div class=\"col-md-4\">\n      <form (ngSubmit)=\"ingresarVehiculo()\" #forma=\"ngForm\">\n        <div class=\"form-group\">\n            <label>Placa</label>\n            <input [(ngModel)]=\"vehiculo.placa\" name=\"placa\" class=\"form-control text-uppercase\" placeholder=\"Placa Vehiculo\" required>\n        </div>\n        <div class=\"form-group\">\n          <label>Tipo Vehiculo</label>\n          <select [(ngModel)]=\"vehiculo.tipoVehiculo\" class=\"form-control\" name=\"tipovehiculo\">\n            <option value=\"1\">CARRO</option>\n            <option value=\"2\">MOTO</option>\n          </select>\n        </div>\n        <div class=\"form-group\">\n          <label>Cilindraje</label>\n          <input [(ngModel)]=\"vehiculo.cilindraje\" type=\"number\" class=\"form-control\" placeholder=\"Cilindraje\" name=\"cilindraje\">\n        </div>\n        <div class=\"form-group\">\n          <!-- <button [disabled]=\"!forma.valid\" [routerLink]=\"['/consulta']\" class=\"btn btn-outline-primary\" type=\"submit\">Ingresar Vehiculo</button> -->\n          <button [disabled]=\"!forma.valid\" class=\"btn btn-outline-primary\" type=\"submit\">Ingresar Vehiculo</button>\n        </div>\n      </form>\n      </div>\n  </div>\n"
+module.exports = "<h1>Ingreso de Vehiculo</h1>\n<hr>\n<div class=\"row animated fadeIn fast\" *ngIf=\"respuestaError.errorCode == 'Error'\">\n<div class=\"col-md-12\">\n  <div class=\"alert alert-info\" role=\"alert\">\n    {{respuestaError.errorMessage}}\n  </div>\n</div>\n</div>\n\n  <div class=\"row animated fadeIn\">\n    <div class=\"col-md-4\">\n      <form (ngSubmit)=\"ingresarVehiculo()\" #forma=\"ngForm\">\n        <div class=\"form-group\">\n            <label>Placa</label>\n            <input [(ngModel)]=\"vehiculo.placa\" maxlength=\"7\" name=\"placa\" class=\"form-control text-uppercase\" placeholder=\"Placa Vehiculo\" required>\n        </div>\n        <div class=\"form-group\">\n          <label>Tipo Vehiculo</label>\n          <select [(ngModel)]=\"vehiculo.tipoVehiculo\" class=\"form-control\" name=\"tipovehiculo\" #selecTipo>\n            <option value=\"1\">CARRO</option>\n            <option value=\"2\">MOTO</option>\n          </select>\n        </div>\n        <div class=\"form-group\" *ngIf=\"selecTipo.value == 2\">\n          <label>Cilindraje</label>\n          <input [(ngModel)]=\"vehiculo.cilindraje\" type=\"number\" class=\"form-control\" placeholder=\"Cilindraje\" name=\"cilindraje\">\n        </div>\n        <div class=\"form-group\">\n          <!-- <button [disabled]=\"!forma.valid\" [routerLink]=\"['/consulta']\" class=\"btn btn-outline-primary\" type=\"submit\">Ingresar Vehiculo</button> -->\n          <button [disabled]=\"!forma.valid\" class=\"btn btn-outline-primary\" type=\"submit\">Ingresar Vehiculo</button>\n        </div>\n      </form>\n      </div>\n  </div>\n"
 
 /***/ }),
 
@@ -262,6 +262,7 @@ var IngresoComponent = (function () {
             fechaSalida: null,
             valorPagar: null
         };
+        this.tipoVehi = 1;
         this.respuestaError = {
             errorCode: "",
             errorMessage: ""
@@ -276,6 +277,17 @@ var IngresoComponent = (function () {
         }, function (error) {
             _this.respuestaError = error.json();
         });
+    };
+    IngresoComponent.prototype.cambiarTipo = function () {
+        console.log('cambiarTipo');
+        if (this.tipoVehi == 1) {
+            this.tipoVehi = 2;
+            console.log('pongo ' + this.tipoVehi);
+        }
+        else {
+            this.tipoVehi = 1;
+            console.log('pongo ' + this.tipoVehi);
+        }
     };
     IngresoComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({

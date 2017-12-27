@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ceiba.parqueadero.parqueadero.builder.VehiculoBuilder;
 import com.ceiba.parqueadero.parqueadero.dto.Parqueadero;
 import com.ceiba.parqueadero.parqueadero.dto.Vehiculo;
+import com.ceiba.parqueadero.parqueadero.dto.Vigilante;
 import com.ceiba.parqueadero.parqueadero.entities.VehiculoEntity;
-import com.ceiba.parqueadero.parqueadero.exeptions.ResourceNotFoundException;
 import com.ceiba.parqueadero.parqueadero.service.VehiculoService;
 
 
@@ -34,28 +34,13 @@ public class VigilanteController {
 	@RequestMapping(value = "ingresarVehiculo", method = RequestMethod.POST)
 	//@PostMapping("ingresarVehiculo")
 	public Vehiculo ingresarVehiculo(@RequestBody VehiculoEntity vehiculoEntity){		
-		Parqueadero parqueadero = new Parqueadero();
-		Vehiculo vehiculo = VehiculoBuilder.convertirADominio(vehiculoEntity);		
-		//Valida si hay cupo disponible
-		if(!parqueadero.placaAutorizada(vehiculo.getPlaca())){
-			throw new ResourceNotFoundException(5, ERROR_DIA_HABIL);
-		}else if(!parqueadero.cupoDisponible(vehiculo.getTipoVehiculo())){
-			if(vehiculo.getTipoVehiculo() == TIPO_CARRO){				
-				throw new ResourceNotFoundException(5, ERROR_CUPO_MAX_CARRO);
-			}else{
-				throw new ResourceNotFoundException(5, ERROR_CUPO_MAX_MOTO);
-			}			
-		}else if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
-			int cupoCarro = getCupoUsoCarros();
-			setCupoUsoCarros(cupoCarro + 1);
-			vehiculo = vehiculoService.saveVehiculo(vehiculoEntity);
-			return (vehiculo != null)?vehiculo:null;
-		}else {
-			int cupoMoto = getCupoUsoMotos();
-			setCupoUsoMotos(cupoMoto + 1);
-			vehiculo = vehiculoService.saveVehiculo(vehiculoEntity);
-			return (vehiculo != null)?vehiculo:null;
-		}
+		Vehiculo vehiculo = VehiculoBuilder.convertirADominio(vehiculoEntity);
+		Vigilante vigilante = new Vigilante();
+		
+		if(vigilante.validaVehiculo(vehiculo))
+			vehiculo = insertarVehiculo(vehiculoEntity);
+		
+		return vehiculo;
 	}
 
 	/**
@@ -65,16 +50,11 @@ public class VigilanteController {
 	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "salidaVehiculo/{placa}", method = RequestMethod.GET)
-	public Vehiculo salidaVehiculo(@PathVariable String placa) throws ParseException{
-		System.out.println("Entro a consultar por placa");
+	public Vehiculo salidaVehiculo(@PathVariable String placa) throws ParseException{		
 		Vehiculo vehiculo = vehiculoService.getVehiculoByPlaca(placa);
-		Parqueadero parqueadero = new Parqueadero();
-				
-		if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
-			vehiculo = parqueadero.valorPagarCarro(vehiculo);
-		}else if (vehiculo.getTipoVehiculo() == TIPO_MOTO){
-			vehiculo = parqueadero.valorPagarMoto(vehiculo);
-		}
+		Parqueadero parqueadero = new Parqueadero();		
+		vehiculo = parqueadero.totalPagar(vehiculo);
+		
 		return vehiculo;
 	}
 	
@@ -95,14 +75,25 @@ public class VigilanteController {
 	@DeleteMapping("liberarCupo/{placa}")
 	public void liberarCupo(@PathVariable String placa){
 		Vehiculo vehiculo = vehiculoService.getVehiculoByPlaca(placa);
-		
+		Parqueadero parqueadero = new Parqueadero();		
+		parqueadero.liberarCupo(vehiculo);
+				
+		vehiculoService.deleteVehiculo(placa);
+	}
+	
+	public Vehiculo insertarVehiculo(VehiculoEntity vehiculoEntity){
+		Vehiculo vehiculo = VehiculoBuilder.convertirADominio(vehiculoEntity);
+		vehiculoEntity.setPlaca(vehiculo.getPlaca().toUpperCase());
 		if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
 			int cupoCarro = getCupoUsoCarros();
-			setCupoUsoCarros(cupoCarro - 1);
-		}else{
+			setCupoUsoCarros(cupoCarro + 1);
+			vehiculo = vehiculoService.saveVehiculo(vehiculoEntity);
+			return (vehiculo != null)?vehiculo:null;
+		}else {
 			int cupoMoto = getCupoUsoMotos();
-			setCupoUsoMotos(cupoMoto - 1);
-		}		
-		vehiculoService.deleteVehiculo(placa);
+			setCupoUsoMotos(cupoMoto + 1);
+			vehiculo = vehiculoService.saveVehiculo(vehiculoEntity);
+			return (vehiculo != null)?vehiculo:null;
+		}
 	}	
 }

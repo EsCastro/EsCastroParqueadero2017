@@ -14,10 +14,10 @@ public class VehiculoEntity {
 	private String placa;
 	
 	@NotNull
-	private Integer cilindraje;
-	
-	@NotNull
 	private Integer tipoVehiculo;
+		
+	@NotNull
+	private Integer cilindraje;
 	
 	private Date fechaIngreso;
 	

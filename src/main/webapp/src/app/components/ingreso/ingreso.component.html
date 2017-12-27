@@ -13,16 +13,16 @@
       <form (ngSubmit)="ingresarVehiculo()" #forma="ngForm">
         <div class="form-group">
             <label>Placa</label>
-            <input [(ngModel)]="vehiculo.placa" name="placa" class="form-control text-uppercase" placeholder="Placa Vehiculo" required>
+            <input [(ngModel)]="vehiculo.placa" maxlength="7" name="placa" class="form-control text-uppercase" placeholder="Placa Vehiculo" required>
         </div>
         <div class="form-group">
           <label>Tipo Vehiculo</label>
-          <select [(ngModel)]="vehiculo.tipoVehiculo" class="form-control" name="tipovehiculo">
+          <select [(ngModel)]="vehiculo.tipoVehiculo" class="form-control" name="tipovehiculo" #selecTipo>
             <option value="1">CARRO</option>
             <option value="2">MOTO</option>
           </select>
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="selecTipo.value == 2">
           <label>Cilindraje</label>
           <input [(ngModel)]="vehiculo.cilindraje" type="number" class="form-control" placeholder="Cilindraje" name="cilindraje">
         </div>

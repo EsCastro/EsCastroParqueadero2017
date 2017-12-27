@@ -21,6 +21,8 @@ export class IngresoComponent implements OnInit {
     valorPagar:null
   };
 
+  tipoVehi:number=1;
+
   respuestaError:RespuestaError={
     errorCode:"",
     errorMessage:""
@@ -37,6 +39,17 @@ export class IngresoComponent implements OnInit {
       },(error)=>{
         this.respuestaError = error.json();
       });
+  }
+
+  cambiarTipo(){
+    console.log('cambiarTipo');
+    if(this.tipoVehi == 1){
+      this.tipoVehi=2;
+      console.log('pongo '+this.tipoVehi);
+    }else{
+      this.tipoVehi=1;
+      console.log('pongo '+this.tipoVehi);
+    }
   }
 
 }

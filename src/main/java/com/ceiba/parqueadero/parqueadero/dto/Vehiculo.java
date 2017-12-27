@@ -5,18 +5,18 @@ import java.util.Date;
 public class Vehiculo {
 	private int tipoVehiculo;
 	private String placa;	
-	private int cilindraje;
 	private Date fechaIngreso;
 	private Date fechaSalida;
 	private double valorPagar;
+	private int cilindraje;
 	
-	public Vehiculo(int tipoVehiculo, String placa, int cilindraje, Date fechaIngreso, Date fechaSalida) {
+	public Vehiculo(int tipoVehiculo, String placa, Date fechaIngreso, Date fechaSalida, int cilindraje) {
 		super();
 		this.tipoVehiculo = tipoVehiculo;
 		this.placa = placa;
-		this.cilindraje = cilindraje;
 		this.fechaIngreso = fechaIngreso;
 		this.fechaSalida = fechaSalida;
+		this.cilindraje = cilindraje;
 	}
 	
 	public int getTipoVehiculo() {
@@ -25,10 +25,6 @@ public class Vehiculo {
 
 	public String getPlaca() {
 		return placa;
-	}
-
-	public int getCilindraje() {
-		return cilindraje;
 	}
 
 	public Date getFechaIngreso() {
@@ -46,4 +42,12 @@ public class Vehiculo {
 	public void setValorPagar(double valorPagar) {
 		this.valorPagar = valorPagar;
 	}
+
+	public int getCilindraje() {
+		return cilindraje;
+	}
+
+	public void setCilindraje(int cilindraje) {
+		this.cilindraje = cilindraje;
+	}	
 }

@@ -45,6 +45,32 @@ public class Parqueadero {
 	}
 	
 	/**
+	 * Calcula el valor total a pagar
+	 * @param vehiculo
+	 * @return
+	 * @throws ParseException 
+	 */
+	public Vehiculo totalPagar(Vehiculo vehiculo) throws ParseException{
+		Vehiculo vehiculoRes = vehiculo;
+		if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
+			vehiculoRes = valorPagarCarro(vehiculo);
+		}else if (vehiculo.getTipoVehiculo() == TIPO_MOTO){
+			vehiculoRes = valorPagarMoto(vehiculo);
+		}
+		return vehiculoRes;
+	}
+	
+	public void liberarCupo(Vehiculo vehiculo){		
+		if(vehiculo.getTipoVehiculo() == TIPO_CARRO){
+			int cupoCarro = getCupoUsoCarros();
+			setCupoUsoCarros(cupoCarro - 1);
+		}else{
+			int cupoMoto = getCupoUsoMotos();
+			setCupoUsoMotos(cupoMoto - 1);
+		}
+	}
+	
+	/**
 	 * Cobrar Carro
 	 * @return
 	 * @throws ParseException 

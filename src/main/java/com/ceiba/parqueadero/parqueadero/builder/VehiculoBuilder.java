@@ -10,7 +10,7 @@ public class VehiculoBuilder {
 	public static Vehiculo convertirADominio(VehiculoEntity vehiculoEntity) {
 		Vehiculo vehiculo = null;
 		if(vehiculoEntity != null) {
-			vehiculo = new Vehiculo(vehiculoEntity.getTipoVehiculo(), vehiculoEntity.getPlaca(), vehiculoEntity.getCilindraje(), vehiculoEntity.getFechaIngreso(), vehiculoEntity.getFechaSalida());
+			vehiculo = new Vehiculo(vehiculoEntity.getTipoVehiculo(), vehiculoEntity.getPlaca(), vehiculoEntity.getFechaIngreso(), vehiculoEntity.getFechaSalida(), vehiculoEntity.getCilindraje());
 		}
 		return vehiculo;
 	}
