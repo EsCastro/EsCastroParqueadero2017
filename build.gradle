@@ -53,7 +53,7 @@ sourceSets {
 	}
 }
 
-processResources {
+/*processResources {
 	dependsOn "buildAngular"
 }
 
@@ -68,4 +68,4 @@ task buildAngular(type:Exec) {
 	} else {
 		commandLine "ng", "build"
 	}
-}
+}*/
